@@ -9,6 +9,10 @@ export class MyMCP extends McpAgent {
 		version: "1.0.0",
 	});
 
+	shouldConnectionBeReadonly(): boolean {
+		return true;
+	}
+
 	async init() {
 		// Simple addition tool
 		this.server.registerTool(
