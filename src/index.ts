@@ -3,63 +3,71 @@ import { McpAgent } from "agents/mcp";
 import { z } from "zod";
 
 export class EmEditorHelpMCP extends McpAgent {
-	server = new McpServer({
-		name: "EmEditor help pages",
-		version: "1.0.0",
-	});
+	server = new McpServer(
+		{
+			name: "emeditor-help-mcp",
+			title: "EmEditor Help Pages",
+			description: "Provides access to EmEditor help pages hosted on https://help.emeditor.com",
+			version: "1.0.0",
+			websiteUrl: "https://www.emeditor.com",
+			icons: [
+				{
+					src: "https://www.emeditor.org/en/_static/favicon.ico",
+					mimeType: "image/vnd.microsoft.icon",
+				}
+			]
+		},
+		{
+			instructions: "This server provides access to EmEditor help pages hosted on help.emeditor.com. Read pages relevant to the user's question for updated information about EmEditor.",
+		}
+	);
 
 	shouldConnectionBeReadonly(): boolean {
 		return true;
 	}
 
 	async init() {
-		// Simple addition tool
 		this.server.registerTool(
-			"add",
-			{ inputSchema: { a: z.number(), b: z.number() } },
-			async ({ a, b }) => ({
-				content: [{ type: "text", text: String(a + b) }],
-			}),
-		);
-
-		// Calculator tool with multiple operations
-		this.server.registerTool(
-			"calculate",
+			"list_directory",
 			{
+				description: "List the contents of a directory",
 				inputSchema: {
-					operation: z.enum(["add", "subtract", "multiply", "divide"]),
-					a: z.number(),
-					b: z.number(),
+					path: z.string(),
+				},
+				outputSchema: {
+					// TODO need to figure out how to indicate folder or file
+					contents: z.array(z.string()),
 				},
 			},
-			async ({ operation, a, b }) => {
-				let result: number;
-				switch (operation) {
-					case "add":
-						result = a + b;
-						break;
-					case "subtract":
-						result = a - b;
-						break;
-					case "multiply":
-						result = a * b;
-						break;
-					case "divide":
-						if (b === 0)
-							return {
-								content: [
-									{
-										type: "text",
-										text: "Error: Cannot divide by zero",
-									},
-								],
-							};
-						result = a / b;
-						break;
+			async () => {
+				return {
+					content: [],
 				}
-				return { content: [{ type: "text", text: String(result) }] };
-			},
+			}
 		);
+
+		this.server.registerTool(
+			"read_document",
+			{
+				description: "Read the contents of a help page",
+				inputSchema: {
+					path: z.string(),
+				},
+				outputSchema: {
+					content: z.string(),
+				},
+			},
+			async () => {
+				return {
+					content: {},
+				}
+			}
+		)
+
+		this.server.registerTool(
+			"search",
+			"Searches for keywords in site"
+		)
 	}
 }
 
