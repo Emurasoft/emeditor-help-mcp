@@ -2,11 +2,13 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { McpAgent } from "agents/mcp";
 import { z } from "zod";
 
-const ListDirectoryResponse = z.array(z.object({
-	name: z.string(),
-	path: z.string(),
-	type: z.enum(["page", "dir"]),
-}));
+const ListDirectoryResponse = z.object({
+	content: z.array(z.object({
+		name: z.string(),
+		path: z.string(),
+		type: z.enum(["page", "dir"]),
+	}))
+});
 
 export class EmEditorHelpMCP extends McpAgent {
 	server = new McpServer(
@@ -48,7 +50,7 @@ export class EmEditorHelpMCP extends McpAgent {
 					content: [
 						{
 							type: "text",
-							text: JSON.stringify(await EmEditorHelpMCP.listDirectory(path)),
+							text: JSON.stringify({content: await EmEditorHelpMCP.listDirectory(path)}),
 						}
 					],
 				}
@@ -104,7 +106,7 @@ export class EmEditorHelpMCP extends McpAgent {
 		)
 	}
 
-	private static async listDirectory(path: string): Promise<z.infer<typeof ListDirectoryResponse>> {
+	private static async listDirectory(path: string): Promise<z.infer<typeof ListDirectoryResponse>['content']> {
 		const url = `https://api.github.com/repos/Emurasoft/emurasoft.github.io/contents${path}`;
 		const response = await fetch(url, {
 			headers: {
