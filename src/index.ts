@@ -122,11 +122,17 @@ export class EmEditorHelpMCP extends McpAgent {
 			throw new Error('invalid GitHub response');
 		}
 
-		return data.map((item: any) => ({
-			name: item.name,
-			path: item.path,
-			isFile: item.type === "file",
-		}));
+		return data.map((item: any) => {
+			if (typeof item !== 'object' || !item) {
+				throw new Error('invalid GitHub response');
+			}
+
+			return {
+				name: item.name,
+				path: item.path,
+				isFile: item.type === "file",
+			};
+		});
 	}
 }
 
