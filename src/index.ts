@@ -2,6 +2,7 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { McpAgent } from "agents/mcp";
 import { z } from "zod";
 import {registerListDirectory} from './listDirectory';
+import {registerReadDocument} from './readDocument';
 
 export class EmEditorHelpMCP extends McpAgent {
 	server = new McpServer(
@@ -30,64 +31,7 @@ export class EmEditorHelpMCP extends McpAgent {
 
 	async init() {
 		registerListDirectory(this.server)
-
-		this.server.registerTool(
-			"read_document",
-			{
-				title: "Read document",
-				description: "Read the contents of a help page",
-				inputSchema: {
-					path: z.string(),
-					language: z.string(),
-				},
-				outputSchema: z.string(),
-				annotations: {
-					readOnlyHint: true,
-					openWorldHint: false,
-				},
-			},
-			async () => {
-				return {
-					content: [
-						{
-							type: "text",
-							text: "Document text",
-						},
-					],
-				}
-			}
-		)
-
-		this.server.registerTool(
-			"search",
-			{
-				title: "Search",
-				description: "Searches for keywords in site",
-				inputSchema: {
-					query: z.string(),
-				},
-				outputSchema: {
-					results: z.array(z.object({
-						path: z.string(),
-						matchedText: z.string(),
-					})),
-				},
-				annotations: {
-					readOnlyHint: true,
-					openWorldHint: false,
-				},
-			},
-			async () => {
-				return {
-					content: [
-						{
-							type: "text",
-							text: JSON.stringify([]),
-						},
-					],
-				}
-			}
-		)
+		registerReadDocument(this.server);
 	}
 }
 

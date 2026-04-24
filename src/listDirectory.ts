@@ -45,7 +45,7 @@ const listDirectory = async (path: string): Promise<z.infer<typeof ListDirectory
 	});
 }
 
-export const registerListDirectory = (server: McpServer) => {
+export const registerListDirectory = (server: McpServer): void => {
 	server.registerTool(
 		"list_directory",
 		{
