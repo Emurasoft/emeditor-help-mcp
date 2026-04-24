@@ -15,10 +15,11 @@ export class EmEditorHelpMCP extends McpAgent {
 					src: "https://www.emeditor.org/en/_static/favicon.ico",
 					mimeType: "image/vnd.microsoft.icon",
 				}
-			]
+			],
 		},
 		{
 			instructions: "This server provides access to EmEditor help pages hosted on help.emeditor.com. Read pages relevant to the user's question for updated information about EmEditor.",
+			enforceStrictCapabilities: true,
 		}
 	);
 
@@ -34,14 +35,17 @@ export class EmEditorHelpMCP extends McpAgent {
 				inputSchema: {
 					path: z.string(),
 				},
-				outputSchema: {
-					// TODO need to figure out how to indicate folder or file
-					contents: z.array(z.string()),
-				},
+				// TODO need to figure out how to indicate folder or file
+				outputSchema: z.array(z.string()),
 			},
 			async () => {
 				return {
-					content: [],
+					content: [
+						{
+							type: "text",
+							text: JSON.stringify(["testItem"]),
+						}
+					],
 				}
 			}
 		);
@@ -52,21 +56,46 @@ export class EmEditorHelpMCP extends McpAgent {
 				description: "Read the contents of a help page",
 				inputSchema: {
 					path: z.string(),
+					language: z.string(),
 				},
-				outputSchema: {
-					content: z.string(),
-				},
+				outputSchema: z.string(),
 			},
 			async () => {
 				return {
-					content: {},
+					content: [
+						{
+							type: "text",
+							text: "Document text",
+						},
+					],
 				}
 			}
 		)
 
 		this.server.registerTool(
 			"search",
-			"Searches for keywords in site"
+			{
+				description: "Searches for keywords in site",
+				inputSchema: {
+					query: z.string(),
+				},
+				outputSchema: {
+					results: z.array(z.object({
+						path: z.string(),
+						matchedText: z.string(),
+					})),
+				}
+			},
+			async () => {
+				return {
+					content: [
+						{
+							type: "text",
+							text: JSON.stringify([]),
+						},
+					],
+				}
+			}
 		)
 	}
 }
