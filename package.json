@@ -8,7 +8,7 @@
     "format": "oxfmt --write .",
     "lint:fix": "oxlint --fix",
     "start": "wrangler dev",
-    "cf-typegen": "wrangler types",
+    "cf-typenpm gen": "wrangler types",
     "type-check": "tsc --noEmit"
   },
   "dependencies": {

@@ -2,6 +2,9 @@
 	"name": "emeditor-help-mcp",
 	"main": "src/index.ts",
 	"compatibility_date": "2026-04-23",
+	"compatibility_flags": [
+		"nodejs_compat"
+	],
 	"migrations": [
 		{
 			"new_sqlite_classes": [
