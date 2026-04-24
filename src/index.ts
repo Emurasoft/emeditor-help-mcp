@@ -39,11 +39,16 @@ export class EmEditorHelpMCP extends McpAgent {
 		this.server.registerTool(
 			"list_directory",
 			{
+				title: "List directory",
 				description: "List the contents of a directory",
 				inputSchema: {
 					path: z.string(),
 				},
 				outputSchema: ListDirectoryResponse,
+				annotations: {
+					readOnlyHint: true,
+					openWorldHint: false,
+				},
 			},
 			async ({ path }) => {
 				return {
@@ -60,12 +65,17 @@ export class EmEditorHelpMCP extends McpAgent {
 		this.server.registerTool(
 			"read_document",
 			{
+				title: "Read document",
 				description: "Read the contents of a help page",
 				inputSchema: {
 					path: z.string(),
 					language: z.string(),
 				},
 				outputSchema: z.string(),
+				annotations: {
+					readOnlyHint: true,
+					openWorldHint: false,
+				},
 			},
 			async () => {
 				return {
@@ -82,6 +92,7 @@ export class EmEditorHelpMCP extends McpAgent {
 		this.server.registerTool(
 			"search",
 			{
+				title: "Search",
 				description: "Searches for keywords in site",
 				inputSchema: {
 					query: z.string(),
@@ -91,7 +102,11 @@ export class EmEditorHelpMCP extends McpAgent {
 						path: z.string(),
 						matchedText: z.string(),
 					})),
-				}
+				},
+				annotations: {
+					readOnlyHint: true,
+					openWorldHint: false,
+				},
 			},
 			async () => {
 				return {
