@@ -105,7 +105,7 @@ export class EmEditorHelpMCP extends McpAgent {
 	}
 
 	private static async listDirectory(path: string): Promise<z.infer<typeof ListDirectoryResponse>> {
-		const url = `https://api.github.com/repos/Emurasoft/emurasoft.github.io/contents/${path}`;
+		const url = `https://api.github.com/repos/Emurasoft/emurasoft.github.io/contents${path}`;
 		const response = await fetch(url, {
 			headers: {
 				"User-Agent": "emeditor-help-mcp",
