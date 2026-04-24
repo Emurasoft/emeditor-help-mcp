@@ -10,9 +10,9 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "agents": "^0.9.0",
-    "typescript": "6.0.2",
-    "wrangler": "^4.84.1",
+    "agents": "^0.11.5",
+    "typescript": "^6.0.3",
+    "wrangler": "^4.85.0",
     "zod": "^4.3.6"
   },
   "packageManager": "yarn@4.14.1"
