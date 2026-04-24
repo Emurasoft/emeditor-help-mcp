@@ -2,6 +2,12 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { McpAgent } from "agents/mcp";
 import { z } from "zod";
 
+const ListDirectoryResponse = z.array(z.object({
+	name: z.string(),
+	path: z.string(),
+	isFile: z.boolean(),
+}));
+
 export class EmEditorHelpMCP extends McpAgent {
 	server = new McpServer(
 		{
@@ -35,15 +41,14 @@ export class EmEditorHelpMCP extends McpAgent {
 				inputSchema: {
 					path: z.string(),
 				},
-				// TODO need to figure out how to indicate folder or file
-				outputSchema: z.array(z.string()),
+				outputSchema: ListDirectoryResponse,
 			},
 			async () => {
 				return {
 					content: [
 						{
 							type: "text",
-							text: JSON.stringify(["testItem"]),
+							text: JSON.stringify(EmEditorHelpMCP.listDirectory()),
 						}
 					],
 				}
@@ -97,6 +102,10 @@ export class EmEditorHelpMCP extends McpAgent {
 				}
 			}
 		)
+	}
+
+	private static async listDirectory(path: string): Promise<z.infer<typeof ListDirectoryResponse>> {
+		// TODO
 	}
 }
 
