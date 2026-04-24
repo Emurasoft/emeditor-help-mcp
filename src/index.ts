@@ -43,12 +43,12 @@ export class EmEditorHelpMCP extends McpAgent {
 				},
 				outputSchema: ListDirectoryResponse,
 			},
-			async () => {
+			async ({ path }) => {
 				return {
 					content: [
 						{
 							type: "text",
-							text: JSON.stringify(EmEditorHelpMCP.listDirectory()),
+							text: JSON.stringify(await EmEditorHelpMCP.listDirectory(path)),
 						}
 					],
 				}
@@ -105,7 +105,28 @@ export class EmEditorHelpMCP extends McpAgent {
 	}
 
 	private static async listDirectory(path: string): Promise<z.infer<typeof ListDirectoryResponse>> {
-		// TODO
+		const url = `https://api.github.com/repos/Emurasoft/emurasoft.github.io/contents/${path}`;
+		const response = await fetch(url, {
+			headers: {
+				"User-Agent": "emeditor-help-mcp",
+				"Accept": "application/vnd.github.v3+json",
+			},
+		});
+
+		if (!response.ok) {
+			throw new Error(`GitHub API error: ${response.status} ${response.statusText}`);
+		}
+
+		const data = await response.json();
+		if (!Array.isArray(data)) {
+			throw new Error('invalid GitHub response');
+		}
+
+		return data.map((item: any) => ({
+			name: item.name,
+			path: item.path,
+			isFile: item.type === "file",
+		}));
 	}
 }
 
