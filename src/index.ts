@@ -5,7 +5,7 @@ import { z } from "zod";
 const ListDirectoryResponse = z.array(z.object({
 	name: z.string(),
 	path: z.string(),
-	isFile: z.boolean(),
+	type: z.enum(["page", "dir"]),
 }));
 
 export class EmEditorHelpMCP extends McpAgent {
@@ -127,10 +127,15 @@ export class EmEditorHelpMCP extends McpAgent {
 				throw new Error('invalid GitHub response');
 			}
 
+			let type: 'page' | 'dir' = 'page';
+			if (item.type === 'dir') {
+				type = 'dir';
+			}
+
 			return {
 				name: item.name,
 				path: item.path,
-				isFile: item.type === "file",
+				type,
 			};
 		});
 	}
