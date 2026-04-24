@@ -1,6 +1,5 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { McpAgent } from "agents/mcp";
-import { z } from "zod";
 import {registerListDirectory} from './listDirectory';
 import {registerReadDocument} from './readDocument';
 
@@ -25,11 +24,11 @@ export class EmEditorHelpMCP extends McpAgent {
 		}
 	);
 
-	shouldConnectionBeReadonly(): boolean {
+	override shouldConnectionBeReadonly(): boolean {
 		return true;
 	}
 
-	async init() {
+	override async init() {
 		registerListDirectory(this.server)
 		registerReadDocument(this.server);
 	}
