@@ -24,7 +24,7 @@ const readDocument = async (path: string): Promise<z.infer<typeof ReadDocumentRe
 	console.log(data);
 	if (
 		!(typeof data === 'object' && data !== null
-		&& 'type' in data && 'encoding' in data)
+		&& 'type' in data)
 	) {
 		throw new Error('invalid GitHub response');
 	}
@@ -33,7 +33,7 @@ const readDocument = async (path: string): Promise<z.infer<typeof ReadDocumentRe
 		throw new Error('not a file');
 	}
 
-	if (!('content' in data && typeof data.content === 'string')) {
+	if (!('content' in data && typeof data.content === 'string' && 'encoding' in data)) {
 		throw new Error('invalid GitHub response');
 	}
 
