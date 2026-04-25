@@ -21,7 +21,6 @@ const readDocument = async (path: string): Promise<z.infer<typeof ReadDocumentRe
 	}
 
 	const data = await response.json();
-	console.log(data);
 	if (
 		!(typeof data === 'object' && data !== null
 		&& 'type' in data)
@@ -38,8 +37,7 @@ const readDocument = async (path: string): Promise<z.infer<typeof ReadDocumentRe
 	}
 
 	if (data.encoding === 'base64' && data.content) {
-		// Use atob to decode base64 in environment where Buffer might not be available
-		const bytes = Uint8Array.from(atob(data.content.replace(/\n/g, '')), (c) => c.charCodeAt(0));
+		const bytes = Uint8Array.from(atob(data.content), (c) => c.charCodeAt(0));
 		const decoded = new TextDecoder().decode(bytes);
 		return {
 			text: decoded,
