@@ -20,7 +20,7 @@ jobs:
           cache: 'yarn'
 
       - name: Install deps
-        run: yarn install --frozen-lockfile && yarn build
+        run: yarn install --immutable
 
       - name: Deploy with wrangler
         env:
