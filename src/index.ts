@@ -28,7 +28,7 @@ export class EmEditorHelpMCP extends McpAgent {
 		return true;
 	}
 
-	override async init() {
+	override async init(): Promise<void> {
 		registerListDirectory(this.server)
 		registerReadDocument(this.server);
 	}

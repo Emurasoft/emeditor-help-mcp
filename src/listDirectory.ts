@@ -27,8 +27,13 @@ const listDirectory = async (path: string): Promise<z.infer<typeof ListDirectory
 		throw new Error('invalid GitHub response');
 	}
 
-	return data.map((item: any) => {
-		if (typeof item !== 'object' || !item) {
+	return data.map((item: unknown) => {
+		if (!(
+			typeof item === 'object' && item !== null
+			&& 'type' in item
+			&& 'name' in item && typeof item.name === 'string'
+			&& 'path' in item && typeof item.path === 'string'
+		)) {
 			throw new Error('invalid GitHub response');
 		}
 

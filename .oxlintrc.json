@@ -19,8 +19,14 @@
     "eslint/no-import-assign": "error",
     "eslint/no-useless-return": "error",
     "eslint/func-style": ["error", "expression"],
-    "eslint/max-lines-per-function": ["warn", { "max": 70, "skipBlankLines": true, "skipComments": true }],
-    "eslint/no-unused-vars": ["warn", { "caughtErrors": "none", "argsIgnorePattern": "^_$", "varsIgnorePattern": "^_$" }]
+    "eslint/max-lines-per-function": [
+      "warn",
+      { "max": 70, "skipBlankLines": true, "skipComments": true }
+    ],
+    "eslint/no-unused-vars": [
+      "warn",
+      { "caughtErrors": "none", "argsIgnorePattern": "^_$", "varsIgnorePattern": "^_$" }
+    ]
   },
   "overrides": [
     {
