@@ -26,33 +26,12 @@
     "eslint/no-unused-vars": [
       "warn",
       { "caughtErrors": "none", "argsIgnorePattern": "^_$", "varsIgnorePattern": "^_$" }
-    ]
-  },
-  "overrides": [
-    {
-      "files": ["**/*.ts", "**/*.tsx"],
-      "rules": {
-        "typescript/no-explicit-any": "error",
-        "typescript/no-confusing-void-expression": ["error", { "ignoreArrowShorthand": true }],
-        "typescript/restrict-template-expressions": ["error", { "allowNumber": true, "allowBoolean": true }],
-        "typescript/no-unnecessary-condition": ["error", { "allowConstantLoopConditions": "only-allowed-literals" }],
-        "typescript/strict-boolean-expressions": ["error", { "allowAny": true }]
-      }
-    },
-    {
-      "files": ["**/*.ts"],
-      "rules": {
-        "typescript/explicit-function-return-type": ["error", { "allowExpressions": true }]
-      }
-    },
-    {
-      "files": ["**/*.tsx"],
-      "rules": {
-        "react/jsx-boolean-value": ["error", "never"],
-        "react/jsx-curly-brace-presence": ["error", "never"],
-        "react/jsx-max-depth": ["warn", { "max": 6 }],
-        "react/self-closing-comp": ["error", { "component": true, "html": true }]
-      }
-    }
-  ]
+    ],
+    "typescript/no-explicit-any": "error",
+    "typescript/no-confusing-void-expression": ["error", { "ignoreArrowShorthand": true }],
+    "typescript/restrict-template-expressions": ["error", { "allowNumber": true, "allowBoolean": true }],
+    "typescript/no-unnecessary-condition": ["error", { "allowConstantLoopConditions": "only-allowed-literals" }],
+    "typescript/strict-boolean-expressions": ["error", { "allowAny": true }],
+    "typescript/explicit-function-return-type": ["error", { "allowExpressions": true }],
+  }
 }
