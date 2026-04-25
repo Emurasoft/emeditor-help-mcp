@@ -16,7 +16,7 @@ const listDirectory = async (path: string): Promise<z.infer<typeof ListDirectory
 	const response = await fetch(url, {
 		headers: {
 			'User-Agent': 'emeditor-help-mcp',
-			Accept: 'application/vnd.github.object',
+			Accept: 'application/vnd.github+json',
 		},
 	});
 
