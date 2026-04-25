@@ -9,7 +9,9 @@
     "cf-typenpm gen": "wrangler types",
     "type-check": "tsc --noEmit",
     "lint": "oxlint --format=github",
-    "lint:fix": "oxlint --fix"
+    "lint:fix": "oxlint --fix",
+    "fmt": "oxfmt",
+    "fmt:check": "oxfmt --check"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.29.0",
