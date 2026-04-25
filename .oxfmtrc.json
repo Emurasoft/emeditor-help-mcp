@@ -5,5 +5,5 @@
 	"useTabs": true,
 	"trailingComma": "all",
 	"bracketSpacing": true,
-	"ignorePatterns": [".pnp.cjs", ".pnp.loader.mjs"]
+	"ignorePatterns": [".pnp.cjs", ".pnp.loader.mjs", "wrangler.jsonc"]
 }
