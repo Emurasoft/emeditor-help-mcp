@@ -46,3 +46,5 @@ export default {
 		return new Response('Not found', { status: 404 });
 	},
 };
+
+export const userAgentString = 'emeditor-help-mcp';

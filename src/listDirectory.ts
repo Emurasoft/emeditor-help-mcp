@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp';
+import {userAgentString} from './index';
 
 const ListDirectoryResponse = z.object({
 	content: z.array(
@@ -15,7 +16,7 @@ const listDirectory = async (path: string): Promise<z.infer<typeof ListDirectory
 	const url = `https://api.github.com/repos/Emurasoft/emurasoft.github.io/contents${path}`;
 	const response = await fetch(url, {
 		headers: {
-			'User-Agent': 'emeditor-help-mcp',
+			'User-Agent': userAgentString,
 			Accept: 'application/vnd.github+json',
 		},
 	});
