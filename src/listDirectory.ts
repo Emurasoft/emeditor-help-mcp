@@ -16,7 +16,7 @@ const listDirectory = async (path: string): Promise<z.infer<typeof ListDirectory
 	const response = await fetch(url, {
 		headers: {
 			'User-Agent': 'emeditor-help-mcp',
-			Accept: 'application/vnd.github.v3+json',
+			Accept: 'application/vnd.github.object',
 		},
 	});
 
@@ -68,8 +68,10 @@ export const registerListDirectory = (server: McpServer): void => {
 			},
 			outputSchema: ListDirectoryResponse,
 			annotations: {
+				destructiveHint: false,
 				readOnlyHint: true,
 				openWorldHint: false,
+				idempotentHint: true,
 			},
 		},
 		async ({ path }) => {

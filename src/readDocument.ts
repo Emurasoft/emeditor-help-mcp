@@ -12,7 +12,7 @@ const readDocument = async (path: string): Promise<z.infer<typeof ReadDocumentRe
 	const response = await fetch(url, {
 		headers: {
 			'User-Agent': 'emeditor-help-mcp',
-			Accept: 'application/vnd.github.v3+json',
+			Accept: 'application/vnd.github.object',
 		},
 	});
 
@@ -21,12 +21,15 @@ const readDocument = async (path: string): Promise<z.infer<typeof ReadDocumentRe
 	}
 
 	const data = await response.json();
-	console.log(data);
 	if (
 		!(typeof data === 'object' && data !== null
-		&& 'content' in data && typeof data.content === 'string' && 'encoding' in data)
+		&& 'type' in data && 'content' in data && typeof data.content === 'string' && 'encoding' in data)
 	) {
 		throw new Error('invalid GitHub response');
+	}
+
+	if (data.type !== 'file') {
+		throw new Error('not a file');
 	}
 
 	if (data.encoding === 'base64' && data.content) {
@@ -52,8 +55,10 @@ export const registerReadDocument = (server: McpServer): void => {
 			},
 			outputSchema: ReadDocumentResponse,
 			annotations: {
+				destructiveHint: false,
 				readOnlyHint: true,
 				openWorldHint: false,
+				idempotentHint: true,
 			},
 		},
 		async ({path}) => {
