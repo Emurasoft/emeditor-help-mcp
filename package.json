@@ -8,7 +8,7 @@
     "start": "wrangler dev",
     "cf-typenpm gen": "wrangler types",
     "type-check": "tsc --noEmit",
-    "lint": "oxlint",
+    "lint": "oxlint --format=github",
     "lint:fix": "oxlint --fix"
   },
   "dependencies": {
