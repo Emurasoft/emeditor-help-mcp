@@ -10,6 +10,7 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
     "agents": "^0.11.5",
     "typescript": "^6.0.3",
     "wrangler": "^4.85.0",

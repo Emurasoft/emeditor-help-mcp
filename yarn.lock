@@ -763,7 +763,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@modelcontextprotocol/sdk@npm:1.29.0":
+"@modelcontextprotocol/sdk@npm:1.29.0, @modelcontextprotocol/sdk@npm:^1.29.0":
   version: 1.29.0
   resolution: "@modelcontextprotocol/sdk@npm:1.29.0"
   dependencies:
@@ -1991,6 +1991,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "remote-mcp-server-authless@workspace:."
   dependencies:
+    "@modelcontextprotocol/sdk": "npm:^1.29.0"
     agents: "npm:^0.11.5"
     typescript: "npm:^6.0.3"
     wrangler: "npm:^4.85.0"
