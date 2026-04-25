@@ -8,7 +8,7 @@ export class EmEditorHelpMCP extends McpAgent {
 		{
 			name: 'emeditor-help-mcp',
 			title: 'EmEditor Help Pages',
-			description: 'Provides access to EmEditor help pages hosted on https://help.emeditor.com',
+			description: 'Provides access to EmEditor help pages hosted on https://help.emeditor.com.',
 			version: '0.9.0',
 			websiteUrl: 'https://www.emeditor.com',
 			icons: [
