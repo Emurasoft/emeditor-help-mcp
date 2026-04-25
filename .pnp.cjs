@@ -31,6 +31,7 @@ const RAW_RUNTIME_STATE =
           ["@modelcontextprotocol/sdk", "virtual:18306fa0cd0678af13ec55c267fcb67918b2b7efa3735c087c8fd46cb71ab087c56e1657dabbe357684cacc7c738d6d64fa5299e7c16e359fe0870ebe2af4205#npm:1.29.0"],\
           ["agents", "virtual:18306fa0cd0678af13ec55c267fcb67918b2b7efa3735c087c8fd46cb71ab087c56e1657dabbe357684cacc7c738d6d64fa5299e7c16e359fe0870ebe2af4205#npm:0.11.5"],\
           ["oxlint", "virtual:18306fa0cd0678af13ec55c267fcb67918b2b7efa3735c087c8fd46cb71ab087c56e1657dabbe357684cacc7c738d6d64fa5299e7c16e359fe0870ebe2af4205#npm:1.61.0"],\
+          ["oxlint-tsgolint", "npm:0.21.1"],\
           ["remote-mcp-server-authless", "workspace:."],\
           ["typescript", "patch:typescript@npm%3A6.0.3#optional!builtin<compat/typescript>::version=6.0.3&hash=5786d5"],\
           ["wrangler", "virtual:18306fa0cd0678af13ec55c267fcb67918b2b7efa3735c087c8fd46cb71ab087c56e1657dabbe357684cacc7c738d6d64fa5299e7c16e359fe0870ebe2af4205#npm:4.85.0"],\
@@ -1044,6 +1045,60 @@ const RAW_RUNTIME_STATE =
           "@types/cfworker__json-schema",\
           "@types/zod",\
           "zod"\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@oxlint-tsgolint/darwin-arm64", [\
+      ["npm:0.21.1", {\
+        "packageLocation": "./.yarn/unplugged/@oxlint-tsgolint-darwin-arm64-npm-0.21.1-ab80e513e7/node_modules/@oxlint-tsgolint/darwin-arm64/",\
+        "packageDependencies": [\
+          ["@oxlint-tsgolint/darwin-arm64", "npm:0.21.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@oxlint-tsgolint/darwin-x64", [\
+      ["npm:0.21.1", {\
+        "packageLocation": "./.yarn/unplugged/@oxlint-tsgolint-darwin-x64-npm-0.21.1-807e7950c6/node_modules/@oxlint-tsgolint/darwin-x64/",\
+        "packageDependencies": [\
+          ["@oxlint-tsgolint/darwin-x64", "npm:0.21.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@oxlint-tsgolint/linux-arm64", [\
+      ["npm:0.21.1", {\
+        "packageLocation": "./.yarn/unplugged/@oxlint-tsgolint-linux-arm64-npm-0.21.1-6b84bcc010/node_modules/@oxlint-tsgolint/linux-arm64/",\
+        "packageDependencies": [\
+          ["@oxlint-tsgolint/linux-arm64", "npm:0.21.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@oxlint-tsgolint/linux-x64", [\
+      ["npm:0.21.1", {\
+        "packageLocation": "./.yarn/unplugged/@oxlint-tsgolint-linux-x64-npm-0.21.1-62eb623227/node_modules/@oxlint-tsgolint/linux-x64/",\
+        "packageDependencies": [\
+          ["@oxlint-tsgolint/linux-x64", "npm:0.21.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@oxlint-tsgolint/win32-arm64", [\
+      ["npm:0.21.1", {\
+        "packageLocation": "./.yarn/unplugged/@oxlint-tsgolint-win32-arm64-npm-0.21.1-6337908622/node_modules/@oxlint-tsgolint/win32-arm64/",\
+        "packageDependencies": [\
+          ["@oxlint-tsgolint/win32-arm64", "npm:0.21.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@oxlint-tsgolint/win32-x64", [\
+      ["npm:0.21.1", {\
+        "packageLocation": "./.yarn/unplugged/@oxlint-tsgolint-win32-x64-npm-0.21.1-14f006eac1/node_modules/@oxlint-tsgolint/win32-x64/",\
+        "packageDependencies": [\
+          ["@oxlint-tsgolint/win32-x64", "npm:0.21.1"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -2481,11 +2536,26 @@ const RAW_RUNTIME_STATE =
           ["@oxlint/binding-win32-x64-msvc", "npm:1.61.0"],\
           ["@types/oxlint-tsgolint", null],\
           ["oxlint", "virtual:18306fa0cd0678af13ec55c267fcb67918b2b7efa3735c087c8fd46cb71ab087c56e1657dabbe357684cacc7c738d6d64fa5299e7c16e359fe0870ebe2af4205#npm:1.61.0"],\
-          ["oxlint-tsgolint", null]\
+          ["oxlint-tsgolint", "npm:0.21.1"]\
         ],\
         "packagePeers": [\
           "@types/oxlint-tsgolint",\
           "oxlint-tsgolint"\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["oxlint-tsgolint", [\
+      ["npm:0.21.1", {\
+        "packageLocation": "../../AppData/Local/Yarn/Berry/cache/oxlint-tsgolint-npm-0.21.1-4fe1bcbddf-10c0.zip/node_modules/oxlint-tsgolint/",\
+        "packageDependencies": [\
+          ["@oxlint-tsgolint/darwin-arm64", "npm:0.21.1"],\
+          ["@oxlint-tsgolint/darwin-x64", "npm:0.21.1"],\
+          ["@oxlint-tsgolint/linux-arm64", "npm:0.21.1"],\
+          ["@oxlint-tsgolint/linux-x64", "npm:0.21.1"],\
+          ["@oxlint-tsgolint/win32-arm64", "npm:0.21.1"],\
+          ["@oxlint-tsgolint/win32-x64", "npm:0.21.1"],\
+          ["oxlint-tsgolint", "npm:0.21.1"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -2665,6 +2735,7 @@ const RAW_RUNTIME_STATE =
           ["@modelcontextprotocol/sdk", "virtual:18306fa0cd0678af13ec55c267fcb67918b2b7efa3735c087c8fd46cb71ab087c56e1657dabbe357684cacc7c738d6d64fa5299e7c16e359fe0870ebe2af4205#npm:1.29.0"],\
           ["agents", "virtual:18306fa0cd0678af13ec55c267fcb67918b2b7efa3735c087c8fd46cb71ab087c56e1657dabbe357684cacc7c738d6d64fa5299e7c16e359fe0870ebe2af4205#npm:0.11.5"],\
           ["oxlint", "virtual:18306fa0cd0678af13ec55c267fcb67918b2b7efa3735c087c8fd46cb71ab087c56e1657dabbe357684cacc7c738d6d64fa5299e7c16e359fe0870ebe2af4205#npm:1.61.0"],\
+          ["oxlint-tsgolint", "npm:0.21.1"],\
           ["remote-mcp-server-authless", "workspace:."],\
           ["typescript", "patch:typescript@npm%3A6.0.3#optional!builtin<compat/typescript>::version=6.0.3&hash=5786d5"],\
           ["wrangler", "virtual:18306fa0cd0678af13ec55c267fcb67918b2b7efa3735c087c8fd46cb71ab087c56e1657dabbe357684cacc7c738d6d64fa5299e7c16e359fe0870ebe2af4205#npm:4.85.0"],\
