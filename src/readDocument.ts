@@ -8,8 +8,37 @@ const ReadDocumentResponse = z.object({
 });
 
 const readDocument = async (path: string): Promise<z.infer<typeof ReadDocumentResponse>['content']> => {
+	const url = `https://api.github.com/repos/Emurasoft/emurasoft.github.io/contents/${path.startsWith('/') ? path.slice(1) : path}`;
+	const response = await fetch(url, {
+		headers: {
+			'User-Agent': 'emeditor-help-mcp',
+			Accept: 'application/vnd.github.v3+json',
+		},
+	});
 
-}
+	if (!response.ok) {
+		throw new Error(`GitHub API error: ${response.status} ${response.statusText}`);
+	}
+
+	const data = await response.json();
+	if (
+		!(typeof data === 'object' && data !== null
+		&& 'content' in data && typeof data.content === 'string' && 'encoding' in data)
+	) {
+		throw new Error('invalid GitHub response');
+	}
+
+	if (data.encoding === 'base64' && data.content) {
+		// Use atob to decode base64 in environment where Buffer might not be available
+		const bytes = Uint8Array.from(atob(data.content.replace(/\n/g, '')), (c) => c.charCodeAt(0));
+		const decoded = new TextDecoder().decode(bytes);
+		return {
+			text: decoded,
+		};
+	}
+
+	throw new Error('Unexpected GitHub API response format');
+};
 
 export const registerReadDocument = (server: McpServer): void => {
 	server.registerTool(
