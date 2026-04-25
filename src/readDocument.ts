@@ -12,7 +12,7 @@ const readDocument = async (path: string): Promise<z.infer<typeof ReadDocumentRe
 	const response = await fetch(url, {
 		headers: {
 			'User-Agent': 'emeditor-help-mcp',
-			Accept: 'application/vnd.github.raw+json',
+			Accept: 'application/vnd.github.object+json',
 		},
 	});
 
@@ -20,11 +20,33 @@ const readDocument = async (path: string): Promise<z.infer<typeof ReadDocumentRe
 		throw new Error(`GitHub API error: ${response.status} ${response.statusText}`);
 	}
 
-	const text = await response.text();
+	const data = await response.json();
+	console.log(data);
+	if (
+		!(typeof data === 'object' && data !== null
+		&& 'type' in data && 'encoding' in data)
+	) {
+		throw new Error('invalid GitHub response');
+	}
 
-	return {
-		text
-	};
+	if (data.type !== 'file') {
+		throw new Error('not a file');
+	}
+
+	if (!('content' in data && typeof data.content === 'string')) {
+		throw new Error('invalid GitHub response');
+	}
+
+	if (data.encoding === 'base64' && data.content) {
+		// Use atob to decode base64 in environment where Buffer might not be available
+		const bytes = Uint8Array.from(atob(data.content.replace(/\n/g, '')), (c) => c.charCodeAt(0));
+		const decoded = new TextDecoder().decode(bytes);
+		return {
+			text: decoded,
+		};
+	}
+
+	throw new Error('Unexpected GitHub API response format');
 };
 
 export const registerReadDocument = (server: McpServer): void => {
