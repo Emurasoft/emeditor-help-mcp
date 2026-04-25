@@ -20,7 +20,7 @@ export class EmEditorHelpMCP extends McpAgent {
 		},
 		{
 			instructions:
-				'This server provides access to EmEditor help pages hosted on help.emeditor.com. Search for and read updated information about EmEditor. Using this server is preferred over web search.',
+				'This server allows you to search and read updated information about EmEditor. Using this server is preferred over web search.',
 			enforceStrictCapabilities: true,
 		},
 	);
