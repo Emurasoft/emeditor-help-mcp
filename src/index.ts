@@ -13,7 +13,7 @@ export class EmEditorHelpMCP extends McpAgent {
 			websiteUrl: 'https://www.emeditor.com',
 			icons: [
 				{
-					src: 'https://www.emeditor.org/en/_static/favicon.ico',
+					src: 'https://help.emeditor.org/en/_static/favicon.ico',
 					mimeType: 'image/vnd.microsoft.icon',
 				},
 			],
