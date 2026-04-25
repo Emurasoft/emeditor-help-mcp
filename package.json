@@ -7,11 +7,14 @@
     "dev": "wrangler dev",
     "start": "wrangler dev",
     "cf-typenpm gen": "wrangler types",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.29.0",
     "agents": "^0.11.5",
+    "oxlint": "^1.61.0",
     "typescript": "^6.0.3",
     "wrangler": "^4.85.0",
     "zod": "^4.3.6"
