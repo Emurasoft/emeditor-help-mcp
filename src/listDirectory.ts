@@ -72,13 +72,17 @@ export const registerListDirectory = (server: McpServer): void => {
 				openWorldHint: false,
 			},
 		},
-		async ({ path }) => ({
-			content: [
-				{
-					type: 'text',
-					text: JSON.stringify({ content: await listDirectory(path) }),
-				},
-			],
-		}),
+		async ({ path }) => {
+			const content = await listDirectory(path);
+			return {
+				content: [
+					{
+						type: 'text',
+						text: JSON.stringify({content}),
+					},
+				],
+				structuredContent: {content},
+			};
+		},
 	);
 };

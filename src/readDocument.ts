@@ -21,6 +21,7 @@ const readDocument = async (path: string): Promise<z.infer<typeof ReadDocumentRe
 	}
 
 	const data = await response.json();
+	console.log(data);
 	if (
 		!(typeof data === 'object' && data !== null
 		&& 'content' in data && typeof data.content === 'string' && 'encoding' in data)
@@ -55,13 +56,17 @@ export const registerReadDocument = (server: McpServer): void => {
 				openWorldHint: false,
 			},
 		},
-		async ({path}) => ({
-			content: [
-				{
-					type: 'text',
-					text: JSON.stringify({ content: await readDocument(path) }),
-				},
-			],
-		}),
+		async ({path}) => {
+			const content = await readDocument(path);
+			return {
+				content: [
+					{
+						type: 'text',
+						text: JSON.stringify({content}),
+					},
+				],
+				structuredContent: {content},
+			};
+		},
 	);
 };
