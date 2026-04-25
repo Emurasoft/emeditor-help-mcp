@@ -1,20 +1,22 @@
-import { z } from "zod";
-import { McpServer } from "@modelcontextprotocol/sdk/server/mcp";
+import { z } from 'zod';
+import { McpServer } from '@modelcontextprotocol/sdk/server/mcp';
 
 const ListDirectoryResponse = z.object({
-	content: z.array(z.object({
-		name: z.string(),
-		path: z.string(),
-		type: z.enum(["page", "dir"]),
-	}))
+	content: z.array(
+		z.object({
+			name: z.string(),
+			path: z.string(),
+			type: z.enum(['page', 'dir']),
+		}),
+	),
 });
 
 const listDirectory = async (path: string): Promise<z.infer<typeof ListDirectoryResponse>['content']> => {
 	const url = `https://api.github.com/repos/Emurasoft/emurasoft.github.io/contents${path}`;
 	const response = await fetch(url, {
 		headers: {
-			"User-Agent": "emeditor-help-mcp",
-			"Accept": "application/vnd.github.v3+json",
+			'User-Agent': 'emeditor-help-mcp',
+			Accept: 'application/vnd.github.v3+json',
 		},
 	});
 
@@ -28,12 +30,17 @@ const listDirectory = async (path: string): Promise<z.infer<typeof ListDirectory
 	}
 
 	return data.map((item: unknown) => {
-		if (!(
-			typeof item === 'object' && item !== null
-			&& 'type' in item
-			&& 'name' in item && typeof item.name === 'string'
-			&& 'path' in item && typeof item.path === 'string'
-		)) {
+		if (
+			!(
+				typeof item === 'object' &&
+				item !== null &&
+				'type' in item &&
+				'name' in item &&
+				typeof item.name === 'string' &&
+				'path' in item &&
+				typeof item.path === 'string'
+			)
+		) {
 			throw new Error('invalid GitHub response');
 		}
 
@@ -48,14 +55,14 @@ const listDirectory = async (path: string): Promise<z.infer<typeof ListDirectory
 			type,
 		};
 	});
-}
+};
 
 export const registerListDirectory = (server: McpServer): void => {
 	server.registerTool(
-		"list_directory",
+		'list_directory',
 		{
-			title: "List directory",
-			description: "List the contents of a directory",
+			title: 'List directory',
+			description: 'List the contents of a directory',
 			inputSchema: {
 				path: z.string(),
 			},
@@ -69,11 +76,11 @@ export const registerListDirectory = (server: McpServer): void => {
 			return {
 				content: [
 					{
-						type: "text",
-						text: JSON.stringify({content: await listDirectory(path)}),
-					}
+						type: 'text',
+						text: JSON.stringify({ content: await listDirectory(path) }),
+					},
 				],
-			}
-		}
+			};
+		},
 	);
 };

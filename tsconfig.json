@@ -18,9 +18,7 @@
 		"noImplicitOverride": true,
 		"noPropertyAccessFromIndexSignature": true,
 		"skipLibCheck": true,
-		"types": [
-			"./worker-configuration.d.ts"
-		]
+		"types": ["./worker-configuration.d.ts"]
 	},
 	"include": ["worker-configuration.d.ts", "src/**/*.ts"]
 }

@@ -1,37 +1,34 @@
 {
-  "options": {
-    "typeAware": true
-  },
-  "env": {
-    "es2026": true
-  },
-  "plugins": ["typescript"],
-  "rules": {
-    "eslint/prefer-const": "error",
-    "eslint/no-unreachable": "error",
-    "eslint/eqeqeq": "error",
-    "eslint/no-else-return": "error",
-    "eslint/no-implicit-coercion": "error",
-    "eslint/curly": ["error", "all"],
-    "eslint/default-case-last": "error",
-    "eslint/no-negated-condition": "error",
-    "eslint/no-unused-expressions": "error",
-    "eslint/no-import-assign": "error",
-    "eslint/no-useless-return": "error",
-    "eslint/func-style": ["error", "expression"],
-    "eslint/max-lines-per-function": [
-      "warn",
-      { "max": 70, "skipBlankLines": true, "skipComments": true }
-    ],
-    "eslint/no-unused-vars": [
-      "warn",
-      { "caughtErrors": "none", "argsIgnorePattern": "^_$", "varsIgnorePattern": "^_$" }
-    ],
-    "typescript/no-explicit-any": "error",
-    "typescript/no-confusing-void-expression": ["error", { "ignoreArrowShorthand": true }],
-    "typescript/restrict-template-expressions": ["error", { "allowNumber": true, "allowBoolean": true }],
-    "typescript/no-unnecessary-condition": ["error", { "allowConstantLoopConditions": "only-allowed-literals" }],
-    "typescript/strict-boolean-expressions": ["error", { "allowAny": true }],
-    "typescript/explicit-function-return-type": ["error", { "allowExpressions": true }],
-  }
+	"options": {
+		"typeAware": true
+	},
+	"env": {
+		"es2026": true
+	},
+	"plugins": ["typescript"],
+	"rules": {
+		"eslint/prefer-const": "error",
+		"eslint/no-unreachable": "error",
+		"eslint/eqeqeq": "error",
+		"eslint/no-else-return": "error",
+		"eslint/no-implicit-coercion": "error",
+		"eslint/curly": ["error", "all"],
+		"eslint/default-case-last": "error",
+		"eslint/no-negated-condition": "error",
+		"eslint/no-unused-expressions": "error",
+		"eslint/no-import-assign": "error",
+		"eslint/no-useless-return": "error",
+		"eslint/func-style": ["error", "expression"],
+		"eslint/max-lines-per-function": ["warn", { "max": 70, "skipBlankLines": true, "skipComments": true }],
+		"eslint/no-unused-vars": [
+			"warn",
+			{ "caughtErrors": "none", "argsIgnorePattern": "^_$", "varsIgnorePattern": "^_$" }
+		],
+		"typescript/no-explicit-any": "error",
+		"typescript/no-confusing-void-expression": ["error", { "ignoreArrowShorthand": true }],
+		"typescript/restrict-template-expressions": ["error", { "allowNumber": true, "allowBoolean": true }],
+		"typescript/no-unnecessary-condition": ["error", { "allowConstantLoopConditions": "only-allowed-literals" }],
+		"typescript/strict-boolean-expressions": ["error", { "allowAny": true }],
+		"typescript/explicit-function-return-type": ["error", { "allowExpressions": true }]
+	}
 }
