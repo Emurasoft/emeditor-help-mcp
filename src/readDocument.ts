@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp';
-import {userAgentString} from './index';
+import { userAgentString } from './index';
 
 const ReadDocumentResponse = z.object({
 	content: z.object({
@@ -22,10 +22,7 @@ const readDocument = async (path: string): Promise<z.infer<typeof ReadDocumentRe
 	}
 
 	const data = await response.json();
-	if (
-		!(typeof data === 'object' && data !== null
-		&& 'type' in data)
-	) {
+	if (!(typeof data === 'object' && data !== null && 'type' in data)) {
 		throw new Error('invalid GitHub response');
 	}
 
@@ -65,16 +62,16 @@ export const registerReadDocument = (server: McpServer): void => {
 				idempotentHint: true,
 			},
 		},
-		async ({path}) => {
+		async ({ path }) => {
 			const content = await readDocument(path);
 			return {
 				content: [
 					{
 						type: 'text',
-						text: JSON.stringify({content}),
+						text: JSON.stringify({ content }),
 					},
 				],
-				structuredContent: {content},
+				structuredContent: { content },
 			};
 		},
 	);

@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp';
-import {userAgentString} from './index';
+import { userAgentString } from './index';
 
 const ListDirectoryResponse = z.object({
 	content: z.array(
@@ -81,10 +81,10 @@ export const registerListDirectory = (server: McpServer): void => {
 				content: [
 					{
 						type: 'text',
-						text: JSON.stringify({content}),
+						text: JSON.stringify({ content }),
 					},
 				],
-				structuredContent: {content},
+				structuredContent: { content },
 			};
 		},
 	);
