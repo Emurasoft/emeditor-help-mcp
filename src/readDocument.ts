@@ -5,6 +5,7 @@ import { userAgentString } from './index';
 const ReadDocumentResponse = z.object({
 	content: z.object({
 		text: z.string(),
+		html_url: z.string(),
 	}),
 });
 
@@ -30,7 +31,15 @@ const readDocument = async (path: string): Promise<z.infer<typeof ReadDocumentRe
 		throw new Error('not a file');
 	}
 
-	if (!('content' in data && typeof data.content === 'string' && 'encoding' in data)) {
+	if (
+		!(
+			'content' in data &&
+			typeof data.content === 'string' &&
+			'encoding' in data &&
+			'html_url' in data &&
+			typeof data.html_url === 'string'
+		)
+	) {
 		throw new Error('invalid GitHub response');
 	}
 
@@ -39,6 +48,7 @@ const readDocument = async (path: string): Promise<z.infer<typeof ReadDocumentRe
 		const decoded = new TextDecoder().decode(bytes);
 		return {
 			text: decoded,
+			html_url: data.html_url,
 		};
 	}
 
