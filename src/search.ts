@@ -1,6 +1,17 @@
 import { z } from 'zod';
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp';
 
+const SearchResponse = z.object({
+	content: z.array(
+		z.object({
+			path: z.string(),
+			matchedText: z.string(),
+		}),
+	),
+});
+
+const search = (query: string): Promise<z.infer<typeof SearchResponse>['content']> => {};
+
 export const registerSearch = (server: McpServer): void => {
 	server.registerTool(
 		'search',
@@ -19,18 +30,22 @@ export const registerSearch = (server: McpServer): void => {
 				),
 			},
 			annotations: {
+				destructiveHint: false,
 				readOnlyHint: true,
 				openWorldHint: false,
+				idempotentHint: true,
 			},
 		},
-		async () => {
+		async ({ query }) => {
+			const content = await search(query);
 			return {
 				content: [
 					{
 						type: 'text',
-						text: JSON.stringify([]),
+						text: JSON.stringify({ content }),
 					},
 				],
+				structuredContent: { content },
 			};
 		},
 	);
