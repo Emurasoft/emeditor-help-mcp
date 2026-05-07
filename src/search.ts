@@ -42,7 +42,7 @@ export const registerSearch = (server: McpServer, searchInstance: AiSearchInstan
 		'search',
 		{
 			title: 'Search',
-			description: 'Searches for keywords in site',
+			description: 'Search in help pages',
 			inputSchema: {
 				query: z.string(),
 			},
