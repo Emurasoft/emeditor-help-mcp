@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp';
-import { userAgentString } from './index';
+import { userAgentString } from './listDirectory';
 
 const ReadDocumentResponse = z.object({
 	content: z.object({

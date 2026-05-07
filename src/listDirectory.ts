@@ -1,6 +1,5 @@
 import { z } from 'zod';
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp';
-import { userAgentString } from './index';
 
 const ListDirectoryResponse = z.object({
 	content: z.array(
@@ -89,3 +88,5 @@ export const registerListDirectory = (server: McpServer): void => {
 		},
 	);
 };
+
+export const userAgentString = 'emeditor-help-mcp';

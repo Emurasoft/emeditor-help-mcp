@@ -5,3 +5,4 @@ node_modules/
 .yarn/install-state.gz
 .wrangler/
 /.claude/settings.local.json
+/.junie
