@@ -6,13 +6,20 @@ const SearchResponse = z.object({
 		z.object({
 			id: z.string(),
 			score: z.number(),
-			text: z.string(),
-			item: z.object({
-				key: z.string(),
-			}),
+			path: z.string(),
+			web_url: z.string(),
 		}),
 	),
 });
+
+const getURLPath = (url: string): string => {
+	try {
+		const urlObj = new URL(url);
+		return urlObj.pathname;
+	} catch (_) {
+		return url;
+	}
+};
 
 const search = async (
 	searchInstance: AiSearchInstance,
@@ -22,7 +29,12 @@ const search = async (
 		query,
 	});
 
-	return result.chunks;
+	return result.chunks.map((result) => ({
+		id: result.id,
+		score: result.score,
+		path: getURLPath(result.item.key),
+		web_url: result.item.key,
+	}));
 };
 
 export const registerSearch = (server: McpServer, searchInstance: AiSearchInstance): void => {
