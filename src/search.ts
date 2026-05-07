@@ -14,8 +14,7 @@ const SearchResponse = z.object({
 
 const getURLPath = (url: string): string => {
 	try {
-		const urlObj = new URL(url);
-		return urlObj.pathname;
+		return new URL(url).pathname;
 	} catch (_) {
 		return url;
 	}
