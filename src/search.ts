@@ -4,16 +4,25 @@ import { McpServer } from '@modelcontextprotocol/sdk/server/mcp';
 const SearchResponse = z.object({
 	content: z.array(
 		z.object({
-			path: z.string(),
-			matchedText: z.string(),
+			id: z.string(),
+			score: z.number(),
+			item: z.object({
+				key: z.string(),
+			}),
 		}),
 	),
 });
 
-const search = (
+const search = async (
 	searchInstance: AiSearchInstance,
 	query: string,
-): Promise<z.infer<typeof SearchResponse>['content']> => {};
+): Promise<z.infer<typeof SearchResponse>['content']> => {
+	const result = await searchInstance.search({
+		query,
+	});
+
+	return result.chunks;
+};
 
 export const registerSearch = (server: McpServer, searchInstance: AiSearchInstance): void => {
 	server.registerTool(
