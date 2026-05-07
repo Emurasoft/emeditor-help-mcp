@@ -6,6 +6,7 @@ const SearchResponse = z.object({
 		z.object({
 			id: z.string(),
 			score: z.number(),
+			text: z.string(),
 			item: z.object({
 				key: z.string(),
 			}),
@@ -33,14 +34,7 @@ export const registerSearch = (server: McpServer, searchInstance: AiSearchInstan
 			inputSchema: {
 				query: z.string(),
 			},
-			outputSchema: {
-				results: z.array(
-					z.object({
-						path: z.string(),
-						matchedText: z.string(),
-					}),
-				),
-			},
+			outputSchema: SearchResponse,
 			annotations: {
 				destructiveHint: false,
 				readOnlyHint: true,

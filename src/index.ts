@@ -33,7 +33,7 @@ export class EmEditorHelpMCP extends McpAgent {
 	override async init(): Promise<void> {
 		registerListDirectory(this.server);
 		registerReadDocument(this.server);
-		registerSearch(this.server, this.env.AI_SEARCH.get('default'));
+		registerSearch(this.server, this.env.AI_SEARCH.get('emeditor-help-search'));
 	}
 }
 
