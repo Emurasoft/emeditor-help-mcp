@@ -10,9 +10,12 @@ const SearchResponse = z.object({
 	),
 });
 
-const search = (query: string): Promise<z.infer<typeof SearchResponse>['content']> => {};
+const search = (
+	searchInstance: AiSearchInstance,
+	query: string,
+): Promise<z.infer<typeof SearchResponse>['content']> => {};
 
-export const registerSearch = (server: McpServer): void => {
+export const registerSearch = (server: McpServer, searchInstance: AiSearchInstance): void => {
 	server.registerTool(
 		'search',
 		{
@@ -37,7 +40,7 @@ export const registerSearch = (server: McpServer): void => {
 			},
 		},
 		async ({ query }) => {
-			const content = await search(query);
+			const content = await search(searchInstance, query);
 			return {
 				content: [
 					{
