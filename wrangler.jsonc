@@ -34,8 +34,10 @@
 	"placement": {
 		"mode": "smart"
 	},
-	"routes": {
-		"pattern": "help.emeditor.com/mcp*",
-		"zone_name": "emeditor.com"
-	}
+	"routes": [
+		{
+			"pattern": "help.emeditor.com/mcp*",
+			"zone_name": "emeditor.com"
+		}
+	]
 }
