@@ -31,5 +31,11 @@
 		"enabled": true
 	},
 	"upload_source_maps": true,
-	"placement": {  "mode": "smart" }
+	"placement": {
+		"mode": "smart"
+	},
+	"routes": {
+		"pattern": "help.emeditor.com/mcp*",
+		"zone_name": "emeditor.com"
+	}
 }
