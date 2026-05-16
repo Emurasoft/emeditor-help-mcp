@@ -39,6 +39,7 @@ export class EmEditorHelpMCP extends McpAgent {
 
 export default {
 	fetch(request: Request, env: Env, ctx: ExecutionContext) {
+		console.log(JSON.stringify(request));
 		const url = new URL(request.url);
 
 		if (url.pathname === '/mcp') {
