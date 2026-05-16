@@ -39,17 +39,6 @@ export class EmEditorHelpMCP extends McpAgent {
 
 export default {
 	async fetch(request: Request, env: Env, ctx: ExecutionContext) {
-		const cloned = request.clone();
-
-		let bodyText = '';
-		try {
-			bodyText = await cloned.text();
-		} catch (e) {
-			bodyText = '(failed to read body)';
-		}
-
-		console.log('request body:', bodyText);
-
 		const url = new URL(request.url);
 
 		if (url.pathname === '/mcp') {
