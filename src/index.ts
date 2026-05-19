@@ -4,8 +4,8 @@ import { registerListDirectory } from './listDirectory';
 import { registerReadDocument } from './readDocument';
 import { registerSearch } from './search';
 
-function createServer(env: Env): McpServer {
-	return new McpServer(
+const createServer = (): McpServer =>
+	new McpServer(
 		{
 			name: 'emeditor-help-mcp',
 			title: 'EmEditor Help Pages',
@@ -25,11 +25,10 @@ function createServer(env: Env): McpServer {
 			enforceStrictCapabilities: true,
 		},
 	);
-}
 
 export default {
 	async fetch(request: Request, env: Env, ctx: ExecutionContext) {
-		const server = createServer(env);
+		const server = createServer();
 		registerListDirectory(server);
 		registerReadDocument(server);
 		registerSearch(server, env.AI_SEARCH.get('emeditor-help-search'));
