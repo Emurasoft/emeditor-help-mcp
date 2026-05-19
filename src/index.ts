@@ -1,11 +1,11 @@
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
-import { McpAgent } from 'agents/mcp';
+import { createMcpHandler } from 'agents/mcp';
 import { registerListDirectory } from './listDirectory';
 import { registerReadDocument } from './readDocument';
 import { registerSearch } from './search';
 
-export class EmEditorHelpMCP extends McpAgent {
-	server = new McpServer(
+const createServer = (): McpServer =>
+	new McpServer(
 		{
 			name: 'emeditor-help-mcp',
 			title: 'EmEditor Help Pages',
@@ -26,25 +26,12 @@ export class EmEditorHelpMCP extends McpAgent {
 		},
 	);
 
-	override shouldConnectionBeReadonly(): boolean {
-		return true;
-	}
-
-	override async init(): Promise<void> {
-		registerListDirectory(this.server);
-		registerReadDocument(this.server);
-		registerSearch(this.server, this.env.AI_SEARCH.get('emeditor-help-search'));
-	}
-}
-
 export default {
 	async fetch(request: Request, env: Env, ctx: ExecutionContext) {
-		const url = new URL(request.url);
-
-		if (url.pathname === '/mcp') {
-			return EmEditorHelpMCP.serve('/mcp').fetch(request, env, ctx);
-		}
-
-		return new Response('Not found', { status: 404 });
+		const server = createServer();
+		registerListDirectory(server);
+		registerReadDocument(server);
+		registerSearch(server, env.AI_SEARCH.get('emeditor-help-search'));
+		return createMcpHandler(server)(request, env, ctx);
 	},
 };

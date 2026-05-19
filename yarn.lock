@@ -1473,6 +1473,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"emeditor-help-mcp@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "emeditor-help-mcp@workspace:."
+  dependencies:
+    "@modelcontextprotocol/sdk": "npm:^1.29.0"
+    "@types/node": "npm:^25.6.0"
+    agents: "npm:^0.11.5"
+    oxfmt: "npm:^0.46.0"
+    oxlint: "npm:^1.61.0"
+    oxlint-tsgolint: "npm:^0.21.1"
+    typescript: "npm:^6.0.3"
+    wrangler: "npm:^4.88.0"
+    zod: "npm:^4.3.6"
+  languageName: unknown
+  linkType: soft
+
 "emoji-regex@npm:^10.3.0":
   version: 10.6.0
   resolution: "emoji-regex@npm:10.6.0"
@@ -2474,22 +2490,6 @@ __metadata:
   checksum: 10c0/d266678d08e1e7abea62c0ce5864344e980fa81c64f6b481e9842c5beaed2cdcf975f658a3ccd67ad35fc919c1f6664ccc106067801850286a6cbe101de89f29
   languageName: node
   linkType: hard
-
-"remote-mcp-server-authless@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "remote-mcp-server-authless@workspace:."
-  dependencies:
-    "@modelcontextprotocol/sdk": "npm:^1.29.0"
-    "@types/node": "npm:^25.6.0"
-    agents: "npm:^0.11.5"
-    oxfmt: "npm:^0.46.0"
-    oxlint: "npm:^1.61.0"
-    oxlint-tsgolint: "npm:^0.21.1"
-    typescript: "npm:^6.0.3"
-    wrangler: "npm:^4.88.0"
-    zod: "npm:^4.3.6"
-  languageName: unknown
-  linkType: soft
 
 "require-from-string@npm:^2.0.2":
   version: 2.0.2
