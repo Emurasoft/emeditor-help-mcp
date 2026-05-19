@@ -1,8 +1,12 @@
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { createMcpHandler } from 'agents/mcp';
+import { DurableObject } from 'cloudflare:workers';
 import { registerListDirectory } from './listDirectory';
 import { registerReadDocument } from './readDocument';
 import { registerSearch } from './search';
+
+// Stub export required for the deleted_classes migration to apply.
+export class EmEditorHelpMCP extends DurableObject {}
 
 const createServer = (): McpServer =>
 	new McpServer(
