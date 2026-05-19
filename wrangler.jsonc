@@ -5,6 +5,22 @@
 	"compatibility_flags": [
 		"nodejs_compat"
 	],
+	"migrations": [
+		{
+			"deleted_classes": [
+				"EmEditorHelpMCP"
+			],
+			"tag": "v2"
+		}
+	],
+	"durable_objects": {
+		"bindings": [
+			{
+				"class_name": "EmEditorHelpMCP",
+				"name": "MCP_OBJECT"
+			}
+		]
+	},
 	"ai_search_namespaces": [
 		{
 			"binding": "AI_SEARCH",
