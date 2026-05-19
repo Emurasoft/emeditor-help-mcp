@@ -13,6 +13,14 @@
 			"tag": "v2"
 		}
 	],
+	"durable_objects": {
+		"bindings": [
+			{
+				"class_name": "EmEditorHelpMCP",
+				"name": "MCP_OBJECT"
+			}
+		]
+	},
 	"ai_search_namespaces": [
 		{
 			"binding": "AI_SEARCH",
