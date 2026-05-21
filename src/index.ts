@@ -27,11 +27,19 @@ const createServer = (): McpServer =>
 	);
 
 export default {
-	async fetch(request: Request, env: Env, ctx: ExecutionContext) {
+	async fetch(req: Request, env: Env, ctx: ExecutionContext) {
 		const server = createServer();
+		const ip = req.headers.get('cf-connecting-ip');
+		if (ip !== null) {
+			const { success } = await env.IP_RATE_LIMITER.limit({ key: ip });
+			if (!success) {
+				// TODO
+			}
+		}
+
 		registerListDirectory(server);
 		registerReadDocument(server);
 		registerSearch(server, env.AI_SEARCH.get('emeditor-help-search'));
-		return createMcpHandler(server)(request, env, ctx);
+		return createMcpHandler(server)(req, env, ctx);
 	},
 };
