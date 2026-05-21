@@ -12,6 +12,26 @@
 			"remote": true
 		}
 	],
+	"ratelimits": [
+		{
+			"name": "IP_RATE_LIMITER",
+			"namespace_id": "11",
+			"simple": {
+				// 10 requests per 10 seconds
+				"limit": 10,
+				"period": 10
+			}
+		},
+		{
+			"name": "SEARCH_RATE_LIMITER",
+			"namespace_id": "12",
+			"simple": {
+				// 10 requests per minute
+				"limit": 10,
+				"period": 60
+			}
+		}
+	],
 	"observability": {
 		"enabled": true
 	},
