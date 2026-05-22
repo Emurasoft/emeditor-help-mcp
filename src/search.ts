@@ -36,7 +36,32 @@ const search = async (
 	}));
 };
 
-export const registerSearch = (server: McpServer, searchInstance: AiSearchInstance): void => {
+export const rateLimitResponseObj = {
+	code: -32029,
+	message: 'IP rate limit exceeded',
+	data: {
+		code: 'rate_limited',
+	},
+};
+
+const rateLimitError = {
+	content: [
+		{
+			type: 'text' as const,
+			text: JSON.stringify({
+				error: rateLimitResponseObj,
+			}),
+		},
+	],
+	isError: true,
+};
+
+export const registerSearch = (
+	server: McpServer,
+	searchInstance: AiSearchInstance,
+	rateLimiter: RateLimit,
+	ip: string | null,
+): void => {
 	server.registerTool(
 		'search',
 		{
@@ -54,6 +79,13 @@ export const registerSearch = (server: McpServer, searchInstance: AiSearchInstan
 			},
 		},
 		async ({ query }) => {
+			if (ip !== null) {
+				const { success } = await rateLimiter.limit({ key: ip });
+				if (!success) {
+					return rateLimitError;
+				}
+			}
+
 			const content = await search(searchInstance, query);
 			return {
 				content: [
