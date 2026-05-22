@@ -4,6 +4,31 @@ import { registerListDirectory } from './listDirectory';
 import { registerReadDocument } from './readDocument';
 import { registerSearch } from './search';
 
+const rateLimitResponse = async (req: Request): Promise<Response> => {
+	let id: string | number | null = null;
+	try {
+		const body = (await req.json()) as { id?: string | number };
+		if (body.id !== undefined) {
+			id = body.id;
+		}
+	} catch {}
+
+	return Response.json(
+		{
+			jsonrpc: '2.0',
+			id,
+			error: {
+				code: -32029,
+				message: 'IP rate limit exceeded',
+				data: {
+					code: 'rate_limited',
+				},
+			},
+		},
+		{ status: 429 },
+	);
+};
+
 const createServer = (): McpServer =>
 	new McpServer(
 		{
@@ -32,27 +57,7 @@ export default {
 		if (ip !== null) {
 			const { success } = await env.IP_RATE_LIMITER.limit({ key: ip });
 			if (!success) {
-				let id: string | number | null = null;
-				try {
-					const body = (await req.json()) as { id?: string | number };
-					if (body.id !== undefined) {
-						id = body.id;
-					}
-				} catch {}
-				return Response.json(
-					{
-						jsonrpc: '2.0',
-						id,
-						error: {
-							code: -32029,
-							message: 'IP rate limit exceeded',
-							data: {
-								code: 'rate_limited',
-							},
-						},
-					},
-					{ status: 429 },
-				);
+				return rateLimitResponse(req);
 			}
 		}
 
