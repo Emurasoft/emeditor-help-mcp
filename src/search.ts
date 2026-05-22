@@ -37,6 +37,18 @@ const search = async (
 	}));
 };
 
+const rateLimitError = {
+	content: [
+		{
+			type: 'text' as const,
+			text: JSON.stringify({
+				error: rateLimitResponseObj,
+			}),
+		},
+	],
+	isError: true,
+};
+
 export const registerSearch = (
 	server: McpServer,
 	searchInstance: AiSearchInstance,
@@ -63,17 +75,7 @@ export const registerSearch = (
 			if (ip !== null) {
 				const { success } = await rateLimiter.limit({ key: ip });
 				if (!success) {
-					return {
-						content: [
-							{
-								type: 'text',
-								text: JSON.stringify({
-									error: rateLimitResponseObj,
-								}),
-							},
-						],
-						isError: true,
-					};
+					return rateLimitError;
 				}
 			}
 
