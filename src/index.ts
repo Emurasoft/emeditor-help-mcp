@@ -28,15 +28,35 @@ const createServer = (): McpServer =>
 
 export default {
 	async fetch(req: Request, env: Env, ctx: ExecutionContext) {
-		const server = createServer();
 		const ip = req.headers.get('cf-connecting-ip');
 		if (ip !== null) {
 			const { success } = await env.IP_RATE_LIMITER.limit({ key: ip });
 			if (!success) {
-				// TODO
+				let id: string | number | null = null;
+				try {
+					const body = (await req.json()) as { id?: string | number };
+					if (body.id !== undefined) {
+						id = body.id;
+					}
+				} catch {}
+				return Response.json(
+					{
+						jsonrpc: '2.0',
+						id,
+						error: {
+							code: -32029,
+							message: 'IP rate limit exceeded',
+							data: {
+								code: 'rate_limited',
+							},
+						},
+					},
+					{ status: 429 },
+				);
 			}
 		}
 
+		const server = createServer();
 		registerListDirectory(server);
 		registerReadDocument(server);
 		registerSearch(server, env.AI_SEARCH.get('emeditor-help-search'));
