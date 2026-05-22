@@ -4,7 +4,15 @@ import { registerListDirectory } from './listDirectory';
 import { registerReadDocument } from './readDocument';
 import { registerSearch } from './search';
 
-const rateLimitResponse = async (req: Request): Promise<Response> => {
+export const rateLimitResponseObj = {
+	code: -32029,
+	message: 'IP rate limit exceeded',
+	data: {
+		code: 'rate_limited',
+	},
+};
+
+const handleRateLimit = async (req: Request): Promise<Response> => {
 	let id: string | number | null = null;
 	try {
 		const body = (await req.json()) as { id?: string | number };
@@ -17,13 +25,7 @@ const rateLimitResponse = async (req: Request): Promise<Response> => {
 		{
 			jsonrpc: '2.0',
 			id,
-			error: {
-				code: -32029,
-				message: 'IP rate limit exceeded',
-				data: {
-					code: 'rate_limited',
-				},
-			},
+			error: rateLimitResponseObj,
 		},
 		{ status: 429 },
 	);
@@ -57,14 +59,14 @@ export default {
 		if (ip !== null) {
 			const { success } = await env.IP_RATE_LIMITER.limit({ key: ip });
 			if (!success) {
-				return rateLimitResponse(req);
+				return handleRateLimit(req);
 			}
 		}
 
 		const server = createServer();
 		registerListDirectory(server);
 		registerReadDocument(server);
-		registerSearch(server, env.AI_SEARCH.get('emeditor-help-search'));
+		registerSearch(server, env.AI_SEARCH.get('emeditor-help-search'), env.SEARCH_RATE_LIMITER, ip);
 		return createMcpHandler(server)(req, env, ctx);
 	},
 };

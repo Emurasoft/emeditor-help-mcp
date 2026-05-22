@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp';
+import { rateLimitResponseObj } from './index';
 
 const SearchResponse = z.object({
 	content: z.array(
@@ -36,7 +37,12 @@ const search = async (
 	}));
 };
 
-export const registerSearch = (server: McpServer, searchInstance: AiSearchInstance): void => {
+export const registerSearch = (
+	server: McpServer,
+	searchInstance: AiSearchInstance,
+	rateLimiter: RateLimit,
+	ip: string | null,
+): void => {
 	server.registerTool(
 		'search',
 		{
@@ -54,6 +60,23 @@ export const registerSearch = (server: McpServer, searchInstance: AiSearchInstan
 			},
 		},
 		async ({ query }) => {
+			if (ip !== null) {
+				const { success } = await rateLimiter.limit({ key: ip });
+				if (!success) {
+					return {
+						content: [
+							{
+								type: 'text',
+								text: JSON.stringify({
+									error: rateLimitResponseObj,
+								}),
+							},
+						],
+						isError: true,
+					};
+				}
+			}
+
 			const content = await search(searchInstance, query);
 			return {
 				content: [
