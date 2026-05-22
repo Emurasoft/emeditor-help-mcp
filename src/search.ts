@@ -1,6 +1,5 @@
 import { z } from 'zod';
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp';
-import { rateLimitResponseObj } from './index';
 
 const SearchResponse = z.object({
 	content: z.array(
@@ -35,6 +34,14 @@ const search = async (
 		path: getURLPath(result.item.key),
 		web_url: result.item.key,
 	}));
+};
+
+export const rateLimitResponseObj = {
+	code: -32029,
+	message: 'IP rate limit exceeded',
+	data: {
+		code: 'rate_limited',
+	},
 };
 
 const rateLimitError = {

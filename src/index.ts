@@ -2,15 +2,7 @@ import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { createMcpHandler } from 'agents/mcp';
 import { registerListDirectory } from './listDirectory';
 import { registerReadDocument } from './readDocument';
-import { registerSearch } from './search';
-
-export const rateLimitResponseObj = {
-	code: -32029,
-	message: 'IP rate limit exceeded',
-	data: {
-		code: 'rate_limited',
-	},
-};
+import { rateLimitResponseObj, registerSearch } from './search';
 
 const handleRateLimit = async (req: Request): Promise<Response> => {
 	let id: string | number | null = null;
