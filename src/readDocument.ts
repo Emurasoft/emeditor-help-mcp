@@ -10,7 +10,7 @@ const ReadDocumentResponse = z.object({
 });
 
 const readDocument = async (path: string): Promise<z.infer<typeof ReadDocumentResponse>['content']> => {
-	const url = `https://api.github.com/repos/Emurasoft/emurasoft.github.io/contents/${path}`;
+	const url = `https://api.github.com/repos/Emurasoft/emurasoft.github.io/contents${path}`;
 	const response = await fetch(url, {
 		headers: {
 			'User-Agent': userAgentString,
