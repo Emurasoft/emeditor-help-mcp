@@ -6,6 +6,9 @@
 		"es2026": true
 	},
 	"plugins": ["typescript"],
+	"categories": {
+		"correctness": "error"
+	},
 	"rules": {
 		"eslint/prefer-const": "error",
 		"eslint/no-unreachable": "error",
