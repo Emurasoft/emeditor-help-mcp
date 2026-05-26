@@ -28,11 +28,11 @@ const search = async (
 		query,
 	});
 
-	return result.chunks.map((result) => ({
-		id: result.id,
-		score: result.score,
-		path: getItemPath(result.item.key),
-		web_url: result.item.key,
+	return result.chunks.map((item) => ({
+		id: item.id,
+		score: item.score,
+		path: getItemPath(item.item.key),
+		web_url: item.item.key,
 	}));
 };
 
