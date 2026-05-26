@@ -14,7 +14,7 @@ const SearchResponse = z.object({
 
 const getItemPath = (url: string): string => {
 	try {
-		return new URL(url).pathname;
+		return new URL(url).pathname.replace(/\.html$/, '.md');
 	} catch (_) {
 		return url;
 	}
