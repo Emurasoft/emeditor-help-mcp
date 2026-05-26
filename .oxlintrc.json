@@ -6,7 +6,13 @@
 		"es2026": true
 	},
 	"plugins": ["typescript"],
+	"categories": {
+		"correctness": "error",
+		"suspicious": "warn",
+		"perf": "warn"
+	},
 	"rules": {
+		"typescript/no-unsafe-type-assertion": "off",
 		"eslint/prefer-const": "error",
 		"eslint/no-unreachable": "error",
 		"eslint/eqeqeq": "error",
