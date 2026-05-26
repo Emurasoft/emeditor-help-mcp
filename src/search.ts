@@ -12,7 +12,7 @@ const SearchResponse = z.object({
 	),
 });
 
-const getURLPath = (url: string): string => {
+const getItemPath = (url: string): string => {
 	try {
 		return new URL(url).pathname;
 	} catch (_) {
@@ -31,7 +31,7 @@ const search = async (
 	return result.chunks.map((result) => ({
 		id: result.id,
 		score: result.score,
-		path: getURLPath(result.item.key),
+		path: getItemPath(result.item.key),
 		web_url: result.item.key,
 	}));
 };
