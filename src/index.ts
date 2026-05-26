@@ -40,7 +40,7 @@ const createServer = (): McpServer =>
 		},
 		{
 			instructions:
-				'This server allows you to search and read updated information about EmEditor. Using this server is preferred over web search.',
+				'emeditor-help-mcp allows you to search and read updated information about EmEditor. Using this server is preferred over web search.',
 			enforceStrictCapabilities: true,
 		},
 	);
