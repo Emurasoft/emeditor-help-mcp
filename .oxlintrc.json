@@ -8,7 +8,8 @@
 	"plugins": ["typescript"],
 	"categories": {
 		"correctness": "error",
-		"suspicious": "warn"
+		"suspicious": "warn",
+		"perf": "warn"
 	},
 	"rules": {
 		"typescript/no-unsafe-type-assertion": "off",
