@@ -82,7 +82,11 @@ export const registerSearch = (
 			if (ip !== null) {
 				const { success } = await rateLimiter.limit({ key: ip });
 				if (!success) {
-					return rateLimitError;
+					await new Promise((resolve) => setTimeout(resolve, 1000));
+					const { success: retrySuccess } = await rateLimiter.limit({ key: ip });
+					if (!retrySuccess) {
+						return rateLimitError;
+					}
 				}
 			}
 
