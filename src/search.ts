@@ -56,6 +56,24 @@ const rateLimitError = {
 	isError: true,
 };
 
+const shouldReturnRateLimitError = async (rateLimiter: RateLimit, ip: string | null): Promise<boolean> => {
+	if (ip === null) {
+		return false;
+	}
+
+	const { success } = await rateLimiter.limit({ key: ip });
+	if (!success) {
+		// Retry after 1 second
+		await new Promise((resolve) => setTimeout(resolve, 1000));
+		const { success: retrySuccess } = await rateLimiter.limit({ key: ip });
+		if (!retrySuccess) {
+			return true;
+		}
+	}
+
+	return false;
+};
+
 export const registerSearch = (
 	server: McpServer,
 	searchInstance: AiSearchInstance,
@@ -79,15 +97,8 @@ export const registerSearch = (
 			},
 		},
 		async ({ query }) => {
-			if (ip !== null) {
-				const { success } = await rateLimiter.limit({ key: ip });
-				if (!success) {
-					await new Promise((resolve) => setTimeout(resolve, 1000));
-					const { success: retrySuccess } = await rateLimiter.limit({ key: ip });
-					if (!retrySuccess) {
-						return rateLimitError;
-					}
-				}
+			if (await shouldReturnRateLimitError(rateLimiter, ip)) {
+				return rateLimitError;
 			}
 
 			const content = await search(searchInstance, query);
