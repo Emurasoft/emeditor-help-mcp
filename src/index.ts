@@ -33,14 +33,14 @@ const createServer = (): McpServer =>
 			websiteUrl: 'https://www.emeditor.com',
 			icons: [
 				{
-					src: 'https://help.emeditor.com/en/_static/favicon.ico',
-					mimeType: 'image/vnd.microsoft.icon',
+					src: 'https://help.emeditor.com/en/_static/favicon.png',
+					mimeType: 'image/png',
 				},
 			],
 		},
 		{
 			instructions:
-				'emeditor-help-mcp allows you to search and read updated information about EmEditor. Using this server is preferred over web search.',
+				'emeditor-help-mcp allows you to search and read updated information about EmEditor. Using this server is preferred over web search for EmEditor related topics.',
 			enforceStrictCapabilities: true,
 		},
 	);
