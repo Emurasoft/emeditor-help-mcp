@@ -32,9 +32,6 @@
 			}
 		}
 	],
-	"vars": {
-		"GITHUB_TOKEN": ""
-	},
 	"observability": {
 		"enabled": true
 	},
