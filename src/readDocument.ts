@@ -10,17 +10,26 @@ const ReadDocumentResponse = z.object({
 
 const userAgentString = 'emeditor-help-mcp';
 
+
+const getURL = (path: string): string => {
+	const normalized = new URL(`https://api.github.com/repos/Emurasoft/emurasoft.github.io/contents${path}`).pathname;
+	if (!normalized.startsWith('/repos/Emurasoft/emurasoft.github.io/contents/')) {
+		throw new Error(`invalid path: ${path}`);
+	}
+
+	return normalized;
+};
+
 const readDocument = async (
 	path: string,
 	githubToken: string,
 ): Promise<z.infer<typeof ReadDocumentResponse>['content']> => {
-	const url = `https://api.github.com/repos/Emurasoft/emurasoft.github.io/contents${path}`;
 	const headers: Record<string, string> = {
 		'User-Agent': userAgentString,
 		Accept: 'application/vnd.github.object+json',
 		Authorization: `Bearer ${githubToken}`,
 	};
-	const response = await fetch(url, { headers });
+	const response = await fetch(getURL(path), { headers });
 
 	if (!response.ok) {
 		throw new Error(`GitHub API error: ${response.status} ${response.statusText}`);
