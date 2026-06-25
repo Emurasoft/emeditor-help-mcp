@@ -28,7 +28,7 @@ const createServer = (): McpServer =>
 			name: 'emeditor-help-mcp',
 			title: 'EmEditor Help Pages',
 			description: 'Provides access to EmEditor help pages hosted on https://help.emeditor.com.',
-			version: '0.9.0',
+			version: '1.0.0',
 			websiteUrl: 'https://www.emeditor.com',
 			icons: [
 				{
