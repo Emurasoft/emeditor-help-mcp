@@ -10,7 +10,6 @@ const ReadDocumentResponse = z.object({
 
 const userAgentString = 'emeditor-help-mcp';
 
-
 const getURL = (path: string): string => {
 	const normalized = new URL(`https://api.github.com/repos/Emurasoft/emurasoft.github.io/contents${path}`).pathname;
 	if (!normalized.startsWith('/repos/Emurasoft/emurasoft.github.io/contents/')) {
