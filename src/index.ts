@@ -1,6 +1,5 @@
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { createMcpHandler } from 'agents/mcp';
-import { registerListDirectory } from './listDirectory';
 import { registerReadDocument } from './readDocument';
 import { rateLimitResponseObj, registerSearch } from './search';
 
@@ -56,7 +55,6 @@ export default {
 		}
 
 		const server = createServer();
-		registerListDirectory(server);
 		registerReadDocument(server);
 		registerSearch(server, env.AI_SEARCH.get('emeditor-help-search'), env.SEARCH_RATE_LIMITER, ip);
 		return createMcpHandler(server)(req, env, ctx);
