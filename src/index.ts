@@ -55,7 +55,7 @@ export default {
 		}
 
 		const server = createServer();
-		registerReadDocument(server);
+		registerReadDocument(server, env.GITHUB_TOKEN);
 		registerSearch(server, env.AI_SEARCH.get('emeditor-help-search'), env.SEARCH_RATE_LIMITER, ip);
 		return createMcpHandler(server)(req, env, ctx);
 	},
