@@ -10,7 +10,10 @@ const ReadDocumentResponse = z.object({
 
 const userAgentString = 'emeditor-help-mcp';
 
-const readDocument = async (path: string, githubToken: string): Promise<z.infer<typeof ReadDocumentResponse>['content']> => {
+const readDocument = async (
+	path: string,
+	githubToken: string,
+): Promise<z.infer<typeof ReadDocumentResponse>['content']> => {
 	const url = `https://api.github.com/repos/Emurasoft/emurasoft.github.io/contents${path}`;
 	const headers: Record<string, string> = {
 		'User-Agent': userAgentString,
