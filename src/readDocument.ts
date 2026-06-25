@@ -1,6 +1,5 @@
 import { z } from 'zod';
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp';
-import { userAgentString } from './listDirectory';
 
 const ReadDocumentResponse = z.object({
 	content: z.object({
@@ -8,6 +7,8 @@ const ReadDocumentResponse = z.object({
 		html_url: z.string(),
 	}),
 });
+
+const userAgentString = 'emeditor-help-mcp';
 
 const readDocument = async (path: string): Promise<z.infer<typeof ReadDocumentResponse>['content']> => {
 	const url = `https://api.github.com/repos/Emurasoft/emurasoft.github.io/contents${path}`;
