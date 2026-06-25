@@ -52,7 +52,7 @@ const readDocument = async (path: string): Promise<z.infer<typeof ReadDocumentRe
 		};
 	}
 
-	throw new Error('Unexpected GitHub API response format');
+	throw new Error('unexpected GitHub API response format');
 };
 
 export const registerReadDocument = (server: McpServer): void => {
