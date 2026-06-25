@@ -9,8 +9,7 @@
 		"cf-typenpm gen": "wrangler types",
 		"type-check": "tsc --noEmit",
 		"lint": "oxlint --format=github",
-		"lint:fix": "oxlint --fix",
-		"fmt": "oxfmt",
+		"lint:fix": "oxlint --fix; oxfmt",
 		"fmt:check": "oxfmt --check"
 	},
 	"dependencies": {

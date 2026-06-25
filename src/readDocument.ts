@@ -10,14 +10,17 @@ const ReadDocumentResponse = z.object({
 
 const userAgentString = 'emeditor-help-mcp';
 
-const readDocument = async (path: string): Promise<z.infer<typeof ReadDocumentResponse>['content']> => {
+const readDocument = async (
+	path: string,
+	githubToken: string,
+): Promise<z.infer<typeof ReadDocumentResponse>['content']> => {
 	const url = `https://api.github.com/repos/Emurasoft/emurasoft.github.io/contents${path}`;
-	const response = await fetch(url, {
-		headers: {
-			'User-Agent': userAgentString,
-			Accept: 'application/vnd.github.object+json',
-		},
-	});
+	const headers: Record<string, string> = {
+		'User-Agent': userAgentString,
+		Accept: 'application/vnd.github.object+json',
+		Authorization: `Bearer ${githubToken}`,
+	};
+	const response = await fetch(url, { headers });
 
 	if (!response.ok) {
 		throw new Error(`GitHub API error: ${response.status} ${response.statusText}`);
@@ -56,7 +59,7 @@ const readDocument = async (path: string): Promise<z.infer<typeof ReadDocumentRe
 	throw new Error('unexpected GitHub API response format');
 };
 
-export const registerReadDocument = (server: McpServer): void => {
+export const registerReadDocument = (server: McpServer, githubToken: string): void => {
 	server.registerTool(
 		'read_document',
 		{
@@ -74,7 +77,7 @@ export const registerReadDocument = (server: McpServer): void => {
 			},
 		},
 		async ({ path }) => {
-			const content = await readDocument(path);
+			const content = await readDocument(path, githubToken);
 			return {
 				content: [
 					{

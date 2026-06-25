@@ -44,5 +44,10 @@
 			"pattern": "help.emeditor.com/mcp*",
 			"zone_name": "emeditor.com"
 		}
-	]
+	],
+	"secrets": {
+		"required": [
+			"GITHUB_TOKEN"
+		]
+	}
 }

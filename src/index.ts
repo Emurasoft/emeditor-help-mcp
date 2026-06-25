@@ -46,6 +46,10 @@ const createServer = (): McpServer =>
 
 export default {
 	async fetch(req: Request, env: Env, ctx: ExecutionContext) {
+		if (env.GITHUB_TOKEN === '') {
+			throw new Error('GITHUB_TOKEN is not defined');
+		}
+
 		const ip = req.headers.get('cf-connecting-ip');
 		if (ip !== null) {
 			const { success } = await env.IP_RATE_LIMITER.limit({ key: ip });
@@ -55,7 +59,7 @@ export default {
 		}
 
 		const server = createServer();
-		registerReadDocument(server);
+		registerReadDocument(server, env.GITHUB_TOKEN);
 		registerSearch(server, env.AI_SEARCH.get('emeditor-help-search'), env.SEARCH_RATE_LIMITER, ip);
 		return createMcpHandler(server)(req, env, ctx);
 	},
