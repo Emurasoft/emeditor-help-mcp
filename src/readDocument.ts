@@ -11,12 +11,12 @@ const ReadDocumentResponse = z.object({
 const userAgentString = 'emeditor-help-mcp';
 
 const getURL = (path: string): string => {
-	const normalized = new URL(`https://api.github.com/repos/Emurasoft/emurasoft.github.io/contents${path}`).pathname;
-	if (!normalized.startsWith('/repos/Emurasoft/emurasoft.github.io/contents/')) {
+	const url = new URL(`https://api.github.com/repos/Emurasoft/emurasoft.github.io/contents${path}`);
+	if (!url.pathname.startsWith('/repos/Emurasoft/emurasoft.github.io/contents/')) {
 		throw new Error(`invalid path: ${path}`);
 	}
 
-	return normalized;
+	return url.toString();
 };
 
 const readDocument = async (
