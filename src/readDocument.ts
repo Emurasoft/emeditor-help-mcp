@@ -27,7 +27,7 @@ const transformPageURL = (html_url: string): string => {
 	}
 	let path = url.pathname.slice(prefix.length);
 	path = path.replace(/index\.md$/, '');
-	path = path.replace(/\.md$/, '');
+	path = path.replace(/\.md$/, '.html');
 	return `https://help.emeditor.com/${path}`;
 };
 
