@@ -4,7 +4,7 @@ import { McpServer } from '@modelcontextprotocol/sdk/server/mcp';
 const ReadDocumentResponse = z.object({
 	content: z.object({
 		text: z.string(),
-		html_url: z.string(),
+		web_url: z.string(),
 	}),
 });
 
@@ -17,6 +17,18 @@ const getURL = (path: string): string => {
 	}
 
 	return url.toString();
+};
+
+const transformPageURL = (html_url: string): string => {
+	const url = new URL(html_url);
+	const prefix = '/Emurasoft/emurasoft.github.io/blob/main/';
+	if (!url.pathname.startsWith(prefix)) {
+		return html_url;
+	}
+	let path = url.pathname.slice(prefix.length);
+	path = path.replace(/index\.md$/, '');
+	path = path.replace(/\.md$/, '.html');
+	return `https://help.emeditor.com/${path}`;
 };
 
 const readDocument = async (
@@ -60,7 +72,7 @@ const readDocument = async (
 		const decoded = new TextDecoder().decode(bytes);
 		return {
 			text: decoded,
-			html_url: data.html_url,
+			web_url: transformPageURL(data.html_url),
 		};
 	}
 
