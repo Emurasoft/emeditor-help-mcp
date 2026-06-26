@@ -4,7 +4,7 @@ import { McpServer } from '@modelcontextprotocol/sdk/server/mcp';
 const ReadDocumentResponse = z.object({
 	content: z.object({
 		text: z.string(),
-		html_url: z.string(),
+		web_url: z.string(),
 	}),
 });
 
@@ -72,7 +72,7 @@ const readDocument = async (
 		const decoded = new TextDecoder().decode(bytes);
 		return {
 			text: decoded,
-			html_url: transformPageURL(data.html_url),
+			web_url: transformPageURL(data.html_url),
 		};
 	}
 
