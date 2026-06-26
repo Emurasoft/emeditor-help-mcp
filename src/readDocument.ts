@@ -19,6 +19,18 @@ const getURL = (path: string): string => {
 	return url.toString();
 };
 
+const transformPageURL = (html_url: string): string => {
+	const url = new URL(html_url);
+	const prefix = '/Emurasoft/emurasoft.github.io/blob/main/';
+	if (!url.pathname.startsWith(prefix)) {
+		return html_url;
+	}
+	let path = url.pathname.slice(prefix.length);
+	path = path.replace(/index\.md$/, '');
+	path = path.replace(/\.md$/, '');
+	return `https://help.emeditor.com/${path}`;
+};
+
 const readDocument = async (
 	path: string,
 	githubToken: string,
@@ -60,7 +72,7 @@ const readDocument = async (
 		const decoded = new TextDecoder().decode(bytes);
 		return {
 			text: decoded,
-			html_url: data.html_url,
+			html_url: transformPageURL(data.html_url),
 		};
 	}
 
