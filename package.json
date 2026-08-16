@@ -13,7 +13,7 @@
 		"fmt:check": "oxfmt --check"
 	},
 	"dependencies": {
-		"@modelcontextprotocol/sdk": "^1.30.0",
+		"@modelcontextprotocol/server": "2.0.0",
 		"@types/node": "^26.2.0",
 		"agents": "^0.20.1",
 		"oxfmt": "^0.62.0",
