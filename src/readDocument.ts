@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { McpServer } from '@modelcontextprotocol/sdk/server/mcp';
+import { McpServer } from '@modelcontextprotocol/server';
 
 const ReadDocumentResponse = z.object({
 	content: z.object({

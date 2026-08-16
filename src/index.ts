@@ -1,5 +1,5 @@
-import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
-import { createMcpHandler } from 'agents/mcp';
+import { McpServer } from '@modelcontextprotocol/server';
+import { createMcpHandler } from 'agents/mcp/server';
 import { registerReadDocument } from './readDocument';
 import { rateLimitResponseObj, registerSearch } from './search';
 
@@ -58,9 +58,11 @@ export default {
 			}
 		}
 
-		const server = createServer();
-		registerReadDocument(server, env.GITHUB_TOKEN);
-		registerSearch(server, env.AI_SEARCH.get('emeditor-help-search'), env.SEARCH_RATE_LIMITER, ip);
-		return createMcpHandler(server)(req, env, ctx);
+		return createMcpHandler(() => {
+			const server = createServer();
+			registerReadDocument(server, env.GITHUB_TOKEN);
+			registerSearch(server, env.AI_SEARCH.get('emeditor-help-search'), env.SEARCH_RATE_LIMITER, ip);
+			return server;
+		})(req, env, ctx);
 	},
 };
