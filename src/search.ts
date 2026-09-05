@@ -16,7 +16,8 @@ const getItemPath = (url: string): string => {
 	try {
 		return new URL(url).pathname.replace(/\.html$/, '.md');
 	} catch (_) {
-		return url;
+		const path = url.startsWith('/') ? url : `/${url}`;
+		return path.replace(/\.html$/, '.md');
 	}
 };
 

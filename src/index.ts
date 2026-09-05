@@ -46,7 +46,7 @@ const createServer = (): McpServer =>
 
 export default {
 	async fetch(req: Request, env: Env, ctx: ExecutionContext) {
-		if (env.GITHUB_TOKEN === '') {
+		if (!env.GITHUB_TOKEN) {
 			throw new Error('GITHUB_TOKEN is not defined');
 		}
 

@@ -11,7 +11,8 @@ const ReadDocumentResponse = z.object({
 const userAgentString = 'emeditor-help-mcp';
 
 const getURL = (path: string): string => {
-	const url = new URL(`https://api.github.com/repos/Emurasoft/emurasoft.github.io/contents${path}`);
+	const normalizedPath = path.startsWith('/') ? path : `/${path}`;
+	const url = new URL(`https://api.github.com/repos/Emurasoft/emurasoft.github.io/contents${normalizedPath}`);
 	if (!url.pathname.startsWith('/repos/Emurasoft/emurasoft.github.io/contents/')) {
 		throw new Error(`invalid path: ${path}`);
 	}
@@ -67,7 +68,7 @@ const readDocument = async (
 		throw new Error('invalid GitHub response');
 	}
 
-	if (data.encoding === 'base64' && data.content) {
+	if (data.encoding === 'base64') {
 		const bytes = Uint8Array.from(atob(data.content), (c) => c.charCodeAt(0));
 		const decoded = new TextDecoder().decode(bytes);
 		return {
