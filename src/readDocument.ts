@@ -67,7 +67,7 @@ const readDocument = async (
 		throw new Error('invalid GitHub response');
 	}
 
-	if (data.encoding === 'base64' && data.content) {
+	if (data.encoding === 'base64') {
 		const bytes = Uint8Array.from(atob(data.content), (c) => c.charCodeAt(0));
 		const decoded = new TextDecoder().decode(bytes);
 		return {
