@@ -86,9 +86,9 @@ export const registerReadDocument = (server: McpServer, githubToken: string): vo
 		{
 			title: 'Read document',
 			description: 'Read the contents of a help page',
-			inputSchema: {
+			inputSchema: z.object({
 				path: z.string(),
-			},
+			}),
 			outputSchema: ReadDocumentResponse,
 			annotations: {
 				destructiveHint: false,

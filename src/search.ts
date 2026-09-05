@@ -86,9 +86,9 @@ export const registerSearch = (
 		{
 			title: 'Search',
 			description: 'Search in help pages',
-			inputSchema: {
+			inputSchema: z.object({
 				query: z.string(),
-			},
+			}),
 			outputSchema: SearchResponse,
 			annotations: {
 				destructiveHint: false,
