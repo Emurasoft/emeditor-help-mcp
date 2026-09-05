@@ -10,20 +10,14 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - name: Install corepack
-        run: npm install -g corepack
+      - name: Install bun
+        uses: oven-sh/setup-bun@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: '25.6'
-          cache: 'yarn'
+      - name: Install deps
+        run: bun ci
 
-      - name: Install dependencies
-        run: yarn install --immutable
-
-      - name: Run Oxlint
-        run: yarn lint
+      - name: Lint
+        run: bun run lint
 
       - name: Run Oxfmt
-        run: yarn fmt:check
+        run: bun fmt:check
