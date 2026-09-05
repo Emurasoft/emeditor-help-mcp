@@ -11,7 +11,8 @@ const ReadDocumentResponse = z.object({
 const userAgentString = 'emeditor-help-mcp';
 
 const getURL = (path: string): string => {
-	const url = new URL(`https://api.github.com/repos/Emurasoft/emurasoft.github.io/contents${path}`);
+	const normalizedPath = path.startsWith('/') ? path : `/${path}`;
+	const url = new URL(`https://api.github.com/repos/Emurasoft/emurasoft.github.io/contents${normalizedPath}`);
 	if (!url.pathname.startsWith('/repos/Emurasoft/emurasoft.github.io/contents/')) {
 		throw new Error(`invalid path: ${path}`);
 	}
