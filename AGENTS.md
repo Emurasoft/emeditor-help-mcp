@@ -25,5 +25,4 @@
 ## Implementation conventions
 
 - Preserve strict TypeScript settings and validate external API responses before using them.
-- Keep MCP tool schemas and annotations next to their tool registration in `src/readPage.ts` and `src/search.ts`.
 - Match the existing formatting and naming style; prefer small, focused changes.
