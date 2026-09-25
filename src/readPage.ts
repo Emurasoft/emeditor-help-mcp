@@ -32,10 +32,7 @@ const transformPageURL = (html_url: string): string => {
 	return `https://help.emeditor.com/${path}`;
 };
 
-const readPage = async (
-	path: string,
-	githubToken: string,
-): Promise<z.infer<typeof ReadPageResponse>['content']> => {
+const readPage = async (path: string, githubToken: string): Promise<z.infer<typeof ReadPageResponse>['content']> => {
 	const headers: Record<string, string> = {
 		'User-Agent': userAgentString,
 		Accept: 'application/vnd.github.object+json',
