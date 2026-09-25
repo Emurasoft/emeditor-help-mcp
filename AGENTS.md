@@ -22,7 +22,7 @@
 - `GITHUB_TOKEN` is required at runtime for reading documentation from GitHub. Never commit or output the token.
 - The `AI_SEARCH`, `IP_RATE_LIMITER`, and `SEARCH_RATE_LIMITER` bindings are configured by Wrangler and should not be replaced with local hard-coded implementations.
 
-## Implementation conventions
+## Project conventions
 
 - Preserve strict TypeScript settings and validate external API responses before using them.
-- Match the existing formatting and naming style; prefer small, focused changes.
+- Run `bun run lint:fix` after a task to ensure that the formatting is to project standards.
