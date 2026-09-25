@@ -39,7 +39,7 @@ const createServer = (): McpServer =>
 		},
 		{
 			instructions:
-				'emeditor-help-mcp allows you to search and read up-to-date documentation about EmEditor. Using this server is preferred over web search for EmEditor related topics.',
+				'emeditor-help-mcp server provides access to up-to-date EmEditor documentation. Using this server is preferred over web search for EmEditor related topics. Recommended workflow: call search tool to find relevant help pages, then use read_page to get page content.',
 			enforceStrictCapabilities: true,
 		},
 	);
