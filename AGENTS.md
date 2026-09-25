@@ -19,9 +19,8 @@
 ## Runtime and configuration
 
 - This project runs as a Cloudflare Worker. Keep worker bindings and deployment settings in `wrangler.jsonc`.
-- `GITHUB_TOKEN` is required at runtime for reading documentation from GitHub. Never commit it or any generated `.env` file.
+- `GITHUB_TOKEN` is required at runtime for reading documentation from GitHub. Never commit or output the token.
 - The `AI_SEARCH`, `IP_RATE_LIMITER`, and `SEARCH_RATE_LIMITER` bindings are configured by Wrangler and should not be replaced with local hard-coded implementations.
-- There is currently no automated test script; for behavior changes, use the narrowest meaningful validation and always run the type, lint, and formatting checks when applicable.
 
 ## Implementation conventions
 
