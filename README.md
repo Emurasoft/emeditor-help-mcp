@@ -10,7 +10,7 @@ The MCP server is hosted at `https://help.emeditor.com/mcp`. It does not require
 
 ### EmEditor Chat with AI
 
-- The EmEditor help pages MCP connector is added by default to Chat with AI! All you need to do is to enable the connector.
+- Chat with AI comes with the EmEditor help pages MCP connector already included! All you need to do is to enable the connector.
 
 1. Open Chat with AI in EmEditor. If Chat with AI is not installed, [see these instructions](https://help.emeditor.com/en/howto/plugin/plugin_chat_with_ai.html).
 2. In Chat with AI, go to **⚙️ (top of sidebar) > Settings**. Go to the **MCP Connectors** page. Enable **EmEditor Help Pages**. The connector will be available to use in new chats.
@@ -20,7 +20,7 @@ The MCP server is hosted at `https://help.emeditor.com/mcp`. It does not require
 1. Open **Settings**. Go to **Connectors**.
 2. Click **Add**.
 3. In **Add custom connector**, set the name to `EmEditor Help Pages` and set the server URL to `https://help.emeditor.com/mcp`. Click **Continue**.
-4. Select **No sign-in** and click **Add**.
+4. In **Authentication**, select **No sign-in** and click **Add**.
 5. In the connector, click **Connect** if prompted.
 
 ### Claude Code (For terminal)
@@ -39,3 +39,11 @@ The MCP server is hosted at `https://help.emeditor.com/mcp`. It does not require
   - **Connection**: `https://help.emeditor.com/mcp`
   - **Authentication**: **No Auth**
   - Read and check the disclaimer at the bottom.
+
+### Other apps
+
+- For apps that are not listed above, find instructions on how to add a MCP server. When prompted, use the following connection details:
+  - Name: `EmEditor Help Pages`
+  - Server URL: `https://help.emeditor.com/mcp`
+  - Authentication type: No authentication
+  - Transport protocol: Streamable HTTP
