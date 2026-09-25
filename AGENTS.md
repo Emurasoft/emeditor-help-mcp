@@ -1,3 +1,7 @@
+## Project overview
+
+This project is a Cloudflare Worker-based MCP server that provides tools to search and read EmEditor help pages hosted at `https://help.emeditor.com`.
+
 ## Project structure
 
 - `src/index.ts`: Contains server info
