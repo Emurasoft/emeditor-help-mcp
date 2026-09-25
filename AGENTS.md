@@ -14,7 +14,6 @@ This project is a Cloudflare Worker-based MCP server that provides tools to sear
 - Run `bun run lint:fix` at the end of a task.
 - Run `bun run dev` to start the local Cloudflare Worker.
 - Run `bun wrangler types` to update types after wrangler is updated.
-- Run `bun run deploy` with explicit user confirmation to deploy to production.
 
 ## Runtime and configuration
 
