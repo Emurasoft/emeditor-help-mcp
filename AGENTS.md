@@ -25,3 +25,8 @@ This project is a Cloudflare Worker-based MCP server that provides tools to sear
 
 - Preserve strict TypeScript settings and validate external API responses before using them.
 - Run `bun run lint:fix` after a task to ensure that the formatting is to project standards.
+
+## CI
+
+- `.github/workflows/lint.yml`: Ensures that the commit follows linting rules.
+- `.github/workflows/deploy.yml`: Runs when a commit is pushed to the branch `production` to deploy the Cloudflare Worker.

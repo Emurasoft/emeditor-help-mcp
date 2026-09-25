@@ -2,7 +2,7 @@
 
 The EmEditor Help Pages MCP server (MCP server name `emeditor-help-mcp`) provides access to EmEditor help pages hosted at `https://help.emeditor.com`. It has two tools: one for searching for a help page and another for reading a help page.
 
-When you use this MCP server with your AI app, the AI is able to answer EmEditor-related questions more accurately than an internet-wide search tool. 
+When you use this MCP server with your AI app, the AI is able to answer EmEditor-related questions more accurately than an internet-wide search tool.
 
 ## Adding this MCP server
 
@@ -36,10 +36,11 @@ The MCP server is hosted at `https://help.emeditor.com/mcp`. It does not require
 4. Click **+**, and click **Create app**.
 5. Click **Create MCP App**.
 6. In **New Plugin**, set these fields and then click **Create**.
-  - **Name**: `EmEditor Help Pages`
-  - **Connection**: `https://help.emeditor.com/mcp`
-  - **Authentication**: **No Auth**
-  - Acknowledge the disclaimer at the bottom.
+
+- **Name**: `EmEditor Help Pages`
+- **Connection**: `https://help.emeditor.com/mcp`
+- **Authentication**: **No Auth**
+- Acknowledge the disclaimer at the bottom.
 
 ### Other apps
 
