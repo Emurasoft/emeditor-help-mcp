@@ -23,6 +23,19 @@ The MCP server is hosted at `https://help.emeditor.com/mcp`. It does not require
 4. Select **No sign-in** and click **Add**.
 5. In the connector, click **Connect** if prompted.
 
-## Claude Code (For terminal)
+### Claude Code (For terminal)
 
-1. In your terminal, run `claude mcp add --transport http emeditor-help-pages https://help.emeditor.com/mcp`
+1. In your terminal, run `claude mcp add --transport http emeditor-help-pages https://help.emeditor.com/mcp`.
+
+### ChatGPT
+
+1. Go to **Settings**. Go to **Security and login**.
+2. Enable **Developer mode**.
+3. Close **Settings** and go to the **Plugins** page.
+4. Click **+**, and click **Create app**.
+5. Click **Create MCP App**.
+6. In **New Plugin**, set these fields and click **Create**.
+  - **Name**: `EmEditor Help Pages`
+  - **Connection**: `https://help.emeditor.com/mcp`
+  - **Authentication**: **No Auth**
+  - Read and check the disclaimer at the bottom.
