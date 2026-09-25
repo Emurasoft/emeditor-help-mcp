@@ -1,6 +1,6 @@
 import { McpServer } from '@modelcontextprotocol/server';
 import { createMcpHandler } from 'agents/mcp/server';
-import { registerReadDocument } from './readDocument';
+import { registerReadPage } from './readPage';
 import { rateLimitResponseObj, registerSearch } from './search';
 
 const handleRateLimit = async (req: Request): Promise<Response> => {
@@ -60,7 +60,7 @@ export default {
 
 		return createMcpHandler(() => {
 			const server = createServer();
-			registerReadDocument(server, env.GITHUB_TOKEN);
+			registerReadPage(server, env.GITHUB_TOKEN);
 			registerSearch(server, env.AI_SEARCH.get('emeditor-help-search'), env.SEARCH_RATE_LIMITER, ip);
 			return server;
 		})(req, env, ctx);

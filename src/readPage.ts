@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { McpServer } from '@modelcontextprotocol/server';
 
-const ReadDocumentResponse = z.object({
+const ReadPageResponse = z.object({
 	content: z.object({
 		text: z.string(),
 		web_url: z.string(),
@@ -32,10 +32,7 @@ const transformPageURL = (html_url: string): string => {
 	return `https://help.emeditor.com/${path}`;
 };
 
-const readDocument = async (
-	path: string,
-	githubToken: string,
-): Promise<z.infer<typeof ReadDocumentResponse>['content']> => {
+const readPage = async (path: string, githubToken: string): Promise<z.infer<typeof ReadPageResponse>['content']> => {
 	const headers: Record<string, string> = {
 		'User-Agent': userAgentString,
 		Accept: 'application/vnd.github.object+json',
@@ -80,16 +77,16 @@ const readDocument = async (
 	throw new Error('unexpected GitHub API response format');
 };
 
-export const registerReadDocument = (server: McpServer, githubToken: string): void => {
+export const registerReadPage = (server: McpServer, githubToken: string): void => {
 	server.registerTool(
-		'read_document',
+		'read_page',
 		{
-			title: 'Read document',
+			title: 'Read page',
 			description: 'Read the contents of a help page',
 			inputSchema: z.object({
 				path: z.string(),
 			}),
-			outputSchema: ReadDocumentResponse,
+			outputSchema: ReadPageResponse,
 			annotations: {
 				destructiveHint: false,
 				readOnlyHint: true,
@@ -98,7 +95,7 @@ export const registerReadDocument = (server: McpServer, githubToken: string): vo
 			},
 		},
 		async ({ path }) => {
-			const content = await readDocument(path, githubToken);
+			const content = await readPage(path, githubToken);
 			return {
 				content: [
 					{
