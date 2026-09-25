@@ -55,7 +55,7 @@ Once the MCP connector is enabled for your app, try asking an EmEditor-related q
 
 > What is Chat with AI for EmEditor?
 
-While generating a response, you may see a message indicating that the AI is using the EmEditor Help Pages connector to retrieve information. The response should include accurate, up-to-date information on the topic, sourced directly from the help pages.
+While generating a response, the app may show a message indicating that the AI is using the EmEditor Help Pages connector to retrieve information. The response should include accurate, up-to-date information on the topic, sourced directly from the help pages.
 
 ## Project structure and build instructions
 
