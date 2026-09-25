@@ -22,3 +22,7 @@ The MCP server is hosted at `https://help.emeditor.com/mcp`. It does not require
 3. In **Add custom connector**, set the name to `EmEditor Help Pages` and set the server URL to `https://help.emeditor.com/mcp`. Click **Continue**.
 4. Select **No sign-in** and click **Add**.
 5. In the connector, click **Connect** if prompted.
+
+## Claude Code (For terminal)
+
+1. In your terminal, run `claude mcp add --transport http emeditor-help-pages https://help.emeditor.com/mcp`
