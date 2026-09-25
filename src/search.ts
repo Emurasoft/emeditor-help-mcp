@@ -6,7 +6,7 @@ const SearchResponse = z.object({
 		z.object({
 			id: z.string(),
 			score: z.number().describe('Higher score = better match'),
-			path: z.string().describe('Use this path in read_document'),
+			path: z.string().describe('Use this path in read_path'),
 			web_url: z.string(),
 		}),
 	),
