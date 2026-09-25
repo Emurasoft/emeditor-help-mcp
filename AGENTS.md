@@ -1,7 +1,3 @@
-## Dependencies
-
-- Bun
-
 ## Project structure
 
 - `src/index.ts`: Contains server info
