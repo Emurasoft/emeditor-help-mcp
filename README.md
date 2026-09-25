@@ -48,3 +48,15 @@ The MCP server is hosted at `https://help.emeditor.com/mcp`. It does not require
   - Server URL: `https://help.emeditor.com/mcp`
   - Authentication type: No authentication
   - Transport protocol: Streamable HTTP
+
+## Using the MCP server in a chat app
+
+Once the MCP connector is enabled for your app, try asking an EmEditor-related question, for example:
+
+> What is Chat with AI for EmEditor?
+
+While generating a response, you may see a message indicating that the AI is using the EmEditor Help Pages connector to retrieve information. The response should include accurate, up-to-date information on the topic, sourced directly from the help pages.
+
+## Project structure and build instructions
+
+See [AGENTS.md](AGENTS.md).
