@@ -64,4 +64,4 @@ While generating a response, the app may show a message indicating that the AI i
 
 ## Project structure and build instructions
 
-See [AGENTS.md](AGENTS.md).
+See [CLAUDE.md](CLAUDE.md).
