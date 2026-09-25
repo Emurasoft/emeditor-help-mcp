@@ -22,6 +22,5 @@
 		"typescript": "^7.0.2",
 		"wrangler": "^4.137.0",
 		"zod": "4.5.4"
-	},
-	"packageManager": "yarn@4.18.0"
+	}
 }
