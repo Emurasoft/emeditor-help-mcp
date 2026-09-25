@@ -58,10 +58,7 @@ Once the MCP connector is enabled for your app, try asking an EmEditor-related q
 
 While generating a response, the app may show a message indicating that the AI is using the EmEditor Help Pages connector to retrieve information. The response should include accurate, up-to-date information on the topic, sourced directly from the help pages.
 
-## Dependencies
+## Development
 
-- Bun
-
-## Project structure and build instructions
-
-See [CLAUDE.md](CLAUDE.md).
+- Requires Bun.
+- See [CLAUDE.md](CLAUDE.md) for project structure and build instructions
