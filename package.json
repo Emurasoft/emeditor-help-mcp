@@ -6,7 +6,6 @@
 		"deploy": "wrangler deploy",
 		"dev": "wrangler dev",
 		"start": "wrangler dev",
-		"cf-typenpm gen": "wrangler types",
 		"type-check": "tsc --noEmit",
 		"lint": "oxlint --format=github",
 		"lint:fix": "oxlint --fix; oxfmt",
@@ -22,6 +21,5 @@
 		"typescript": "^7.0.2",
 		"wrangler": "^4.137.0",
 		"zod": "4.5.4"
-	},
-	"packageManager": "yarn@4.18.0"
+	}
 }
