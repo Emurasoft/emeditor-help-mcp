@@ -1,27 +1,28 @@
-# EmEditor help pages MCP server
+# EmEditor Help Pages MCP server
 
-EmEditor help pages MCP (MCP server name `emeditor-help-mcp`) provides access to EmEditor help pages hosted on `https://help.emeditor.com`. It has two tools: 1. search for a help page and 2. read a help page.
+The EmEditor Help Pages MCP server (MCP server name `emeditor-help-mcp`) provides access to EmEditor help pages hosted at `https://help.emeditor.com`. It has two tools: one for searching for a help page and another for reading a help page.
 
-When this MCP server is used in your AI app, the AI is able to answer EmEditor-related questions more accurately than an internet-wide search tool. 
+When you use this MCP server with your AI app, the AI is able to answer EmEditor-related questions more accurately than an internet-wide search tool. 
 
 ## Adding this MCP server
 
-The MCP server is hosted at `https://help.emeditor.com/mcp`. It does not require authentication for connecting. See the following instructions for using this MCP server in your AI app.
+The MCP server is hosted at `https://help.emeditor.com/mcp`. It does not require authenticating to connect. Follow the instructions below to use this MCP server in your AI app.
 
 ### EmEditor Chat with AI
 
-- Chat with AI comes with the EmEditor help pages MCP connector already included! All you need to do is to enable the connector.
+- Chat with AI comes with the EmEditor help pages MCP connector built in! You only need to enable the connector to start using it.
 
 1. Open Chat with AI in EmEditor. If Chat with AI is not installed, [see these instructions](https://help.emeditor.com/en/howto/plugin/plugin_chat_with_ai.html).
-2. In Chat with AI, go to **⚙️ (top of sidebar) > Settings**. Go to the **MCP Connectors** page. Enable **EmEditor Help Pages**. The connector will be available to use in new chats.
+2. In Chat with AI, go to **⚙️ (top of sidebar) > Settings**. Go to the **MCP Connectors** page.
+3. Enable **EmEditor Help Pages**. The connector will be available in new chats.
 
 ### Claude
 
-1. Open **Settings**. Go to **Connectors**.
+1. Open **Settings** > **Connectors**.
 2. Click **Add**.
 3. In **Add custom connector**, set the name to `EmEditor Help Pages` and set the server URL to `https://help.emeditor.com/mcp`. Click **Continue**.
 4. In **Authentication**, select **No sign-in** and click **Add**.
-5. In the connector, click **Connect** if prompted.
+5. On the connector page, click **Connect** if prompted.
 
 ### Claude Code (For terminal)
 
@@ -29,20 +30,20 @@ The MCP server is hosted at `https://help.emeditor.com/mcp`. It does not require
 
 ### ChatGPT
 
-1. Go to **Settings**. Go to **Security and login**.
+1. Go to **Settings** > **Security and login**.
 2. Enable **Developer mode**.
 3. Close **Settings** and go to the **Plugins** page.
 4. Click **+**, and click **Create app**.
 5. Click **Create MCP App**.
-6. In **New Plugin**, set these fields and click **Create**.
+6. In **New Plugin**, set these fields and then click **Create**.
   - **Name**: `EmEditor Help Pages`
   - **Connection**: `https://help.emeditor.com/mcp`
   - **Authentication**: **No Auth**
-  - Read and check the disclaimer at the bottom.
+  - Acknowledge the disclaimer at the bottom.
 
 ### Other apps
 
-- For apps that are not listed above, find instructions on how to add a MCP server. When prompted, use the following connection details:
+- For apps that are not listed above, find instructions on how to add an MCP server. When prompted, use the following connection details:
   - Name: `EmEditor Help Pages`
   - Server URL: `https://help.emeditor.com/mcp`
   - Authentication type: No authentication
