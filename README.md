@@ -10,7 +10,7 @@ The MCP server is hosted at `https://help.emeditor.com/mcp`. It does not require
 
 ### EmEditor Chat with AI
 
-- Chat with AI comes with the EmEditor help pages MCP connector built in! You only need to enable the connector to start using it.
+- [Chat with AI](https://help.emeditor.com/en/howto/plugin/plugin_chat_with_ai.html) comes with the EmEditor help pages MCP connector built in! You only need to enable the connector to start using it.
 
 1. Open Chat with AI in EmEditor. If Chat with AI is not installed, [see these instructions](https://help.emeditor.com/en/howto/plugin/plugin_chat_with_ai.html).
 2. In Chat with AI, go to **⚙️ (top of sidebar) > Settings**. Go to the **MCP Connectors** page.
