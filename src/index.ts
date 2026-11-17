@@ -32,8 +32,14 @@ const createServer = (): McpServer =>
 			websiteUrl: 'https://www.emeditor.com',
 			icons: [
 				{
-					src: 'https://help.emeditor.com/en/_static/favicon.png',
+					src: 'https://www.emeditor.com/favicons/logo-square.svg',
+					mimeType: 'image/svg+xml',
+					sizes: ['any'],
+				},
+				{
+					src: 'https://www.emeditor.com/favicons/apple-touch-icon.png',
 					mimeType: 'image/png',
+					sizes: ['180x180'],
 				},
 			],
 		},
