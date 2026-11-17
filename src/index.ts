@@ -33,7 +33,7 @@ const createServer = (): McpServer =>
 			icons: [
 				{
 					src: 'https://help.emeditor.com/en/_static/logo-square.svg',
-					mimeType: 'image/png',
+					mimeType: 'image/svg',
 				},
 			],
 		},
