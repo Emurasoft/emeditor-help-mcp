@@ -35,6 +35,10 @@ const createServer = (): McpServer =>
 					src: 'https://help.emeditor.com/en/_static/logo-square.svg',
 					mimeType: 'image/svg',
 				},
+				{
+					src: 'public/favicons/apple-touch-icon.png',
+					mimeType: 'image/png',
+				},
 			],
 		},
 		{
